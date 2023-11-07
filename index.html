@@ -1,0 +1,26 @@
+---
+layout: bounty-list
+title: All Bounties
+---
+
+{% assign bounties=site.pages |where:"layout":"bounty" %}
+
+{% for bounty in bounties %}
+  <div class="bounty-item-container">
+    <div class="bounty-item-head flex-justify">
+      <a href="{{bounty.url|relative_url}}"><h3> {{bounty.title}} </h3></a>
+      <h3> {{bounty.amount}} </h3>
+    </div>
+    <div class="bounty-item-content">
+      <p> {{bounty.summary}} </p>
+    </div>
+    <div class="bounty-item-foot flex-stack-left">
+    {% for skillset in {{bounty.skillsets}}%}
+      <p class="bounty-tag-container"> {{skillset}} </p>
+    {% endfor%}
+    {% for tags in {{bounty.tags}}%}
+      <p class="bounty-tag"> {{tags}} </p>
+    {% endfor%}
+    </div>
+  </div>
+{% endfor %}

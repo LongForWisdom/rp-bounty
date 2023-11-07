@@ -1,0 +1,40 @@
+
+$border-radius: 12px;
+
+.bounty-item-container {
+  background-color: #EEEEEE;
+  border-radius: $border-radius;
+  border: 3px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.bounty-item-container p {
+  margin-bottom: 0px;
+}
+
+.bounty-item-head {
+  background-color: #DDDDDD;
+  border-radius: $border-radius $border-radius 0px 0px;
+  padding: 8px;
+}
+
+.bounty-item-head h3 {
+  margin-bottom: 0px;
+}
+
+.bounty-item-foot {
+  background-color: #EEEEEE;
+  border-radius: 0px 0px $border-radius $border-radius;
+  padding: 8px;
+}
+
+.bounty-tag {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.bounty-item-content {
+  padding: 8px;
+  border-bottom: 1px solid black
+}
