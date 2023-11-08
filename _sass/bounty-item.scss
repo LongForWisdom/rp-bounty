@@ -1,10 +1,14 @@
 
 $border-radius: 12px;
+$tag-border-radius: 6px;
+$skillset-col: blue;
+$tag-col: red;
+
 
 .bounty-item-container {
-  background-color: #EEEEEE;
+  background-color: #DDDDDD;
   border-radius: $border-radius;
-  border: 3px solid black;
+  border: 1px solid #FFFFFF;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -14,27 +18,54 @@ $border-radius: 12px;
 }
 
 .bounty-item-head {
-  background-color: #DDDDDD;
+  background-color: #EEEEEE;
   border-radius: $border-radius $border-radius 0px 0px;
   padding: 8px;
 }
 
 .bounty-item-head h3 {
-  margin-bottom: 0px;
+  margin-bottom: 8px;
 }
 
 .bounty-item-foot {
-  background-color: #EEEEEE;
+  background-color: #DDDDDD;
   border-radius: 0px 0px $border-radius $border-radius;
   padding: 8px;
 }
 
 .bounty-tag {
-  margin-left: 8px;
-  margin-right: 8px;
+  margin-left: 4px;
+  margin-right: 4px;
+  background-color: #DDDDDD;
+  border-radius: $tag-border-radius;
+}
+
+.bounty-tag:first-child {
+  margin-left: 0px;
+}
+
+.bounty-tag-flare {
+  width: 6px;
+  height: 100%;
+  border-radius: $tag-border-radius 0px 0px $tag-border-radius;
+}
+
+.bounty-tag-skillset
+{
+  @extend .bounty-tag-flare;
+  background-color: $skillset-col;
+}
+
+.bounty-tag-tag
+{
+  @extend .bounty-tag-flare;
+  background-color: $tag-col;
+}
+
+.bounty-tag p {
+  padding: 0px 8px;
 }
 
 .bounty-item-content {
   padding: 8px;
-  border-bottom: 1px solid black
 }

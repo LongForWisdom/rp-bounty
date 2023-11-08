@@ -3,24 +3,32 @@ layout: bounty-list
 title: All Bounties
 ---
 
-{% assign bounties=site.pages |where:"layout":"bounty" %}
+{% assign bounties=site.pages |where:"layout":"bounty" | where:"status":"open"%}
 
 {% for bounty in bounties %}
   <div class="bounty-item-container">
-    <div class="bounty-item-head flex-justify">
-      <a href="{{bounty.url|relative_url}}"><h3> {{bounty.title}} </h3></a>
-      <h3> {{bounty.amount}} </h3>
+    <div class="bounty-item-head">
+      <div class="flex-justify">
+        <a href="{{bounty.url|relative_url}}"><h3> {{bounty.title}} </h3></a>
+        <h3> {{bounty.reward}} </h3>
+      </div>
+      <div class="bounty-tag-container flex-stack-left">
+        {% for skillset in {{bounty.skillsets}}%}
+          <div class="bounty-tag flex-stack-left">
+            <div class="bounty-tag-skillset"></div>
+            <p> {{skillset}} </p>
+          </div>
+        {% endfor%}
+        {% for tag in {{bounty.tags}}%}
+          <div class="bounty-tag flex-stack-left">
+            <div class="bounty-tag-tag"></div>
+            <p> {{tag}} </p>
+          </div>
+        {% endfor%}
+      </div>
     </div>
     <div class="bounty-item-content">
-      <p> {{bounty.summary}} </p>
-    </div>
-    <div class="bounty-item-foot flex-stack-left">
-    {% for skillset in {{bounty.skillsets}}%}
-      <p class="bounty-tag-container"> {{skillset}} </p>
-    {% endfor%}
-    {% for tags in {{bounty.tags}}%}
-      <p class="bounty-tag"> {{tags}} </p>
-    {% endfor%}
+      {{ bounty.summary | markdownify}}
     </div>
   </div>
 {% endfor %}
