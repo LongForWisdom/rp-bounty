@@ -1,6 +1,13 @@
 ---
 layout: default
 ---
+
+<style type="text/css">
+  .bounty-preamble th {
+    width: 20%;
+  }
+</style>
+
 <article class="post">
 
   <header class="post-header">
@@ -8,10 +15,34 @@ layout: default
       <h1 class="post-title"> {{ page.title | escape }} </h1>
       <h1 class="post-title"> {{page.reward}} </h1>
     </div>
+    <div class="flex-justify">
+      {% assign bounty = page %}
+      {% include bounty-tags.html bounty=page %}
+      <b>{{page.date | date_to_string: "ordinal", "US"}}</b>
+    </div>
   </header>
 
   <div class="post-content">
     {{ content }}
+    {% if page.contacts %}
+    {% assign contactsData = site.data.contacts.contacts %}
+    {% assign contactMeta = site.data.contacts.meta %}
+    <div>
+      <h2>Contacts</h2>
+      {% for contact in page.contacts %}
+        {% assign contactData = contactsData | where: 'name', contact | first %}
+        {% if contactData %}
+          <b>{{ contactData.name }}:</b>
+          {% if contactData.discord %}<a href="{{contactMeta.discord-prefix}}{{contactData.discord}}">Discord</a> {% endif %}
+          {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">Forum</a>{% endif %}
+          {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">Github</a>{% endif %}
+          </br>
+        {% else %}
+          <b>{{ contact }}</b>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
   </div>
 
 </article>

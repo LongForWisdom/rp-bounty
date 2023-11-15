@@ -2,7 +2,10 @@
 $border-radius: 12px;
 $tag-border-radius: 6px;
 $skillset-col: blue;
-$tag-col: red;
+$tag-col: gold;
+$status-open-col: Chartreuse;
+$status-closed-col: red;
+$code-col: black;
 
 
 .bounty-item-container {
@@ -62,8 +65,27 @@ $tag-col: red;
   background-color: $tag-col;
 }
 
+.bounty-tag-code
+{
+  @extend .bounty-tag-flare;
+  background-color: $code-col;
+}
+
+.bounty-tag-status-open
+{
+  @extend .bounty-tag-flare;
+  background-color: $status-open-col;
+}
+
+.bounty-tag-status-closed
+{
+  @extend .bounty-tag-flare;
+  background-color: $status-closed-col;
+}
+
 .bounty-tag p {
   padding: 0px 8px;
+  margin: 0px
 }
 
 .bounty-item-content {
