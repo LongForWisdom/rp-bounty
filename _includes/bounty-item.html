@@ -1,0 +1,14 @@
+  
+  
+  <div class="bounty-item-container" id="{{include.bounty.code}}" >
+    <div class="bounty-item-head">
+      <div class="flex-justify">
+        <a href="{{bounty.url|relative_url}}"><h3> {{include.bounty.title}} </h3></a>
+        <h3> {{include.bounty.reward}} </h3>
+      </div>
+      {% include bounty-tags.html bounty=include.bounty%}
+    </div>
+    <div class="bounty-item-content">
+      {{ include.bounty.summary | markdownify}}
+    </div>
+  </div>

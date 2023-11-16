@@ -1,0 +1,57 @@
+{% assign filters = '' | split: '' %}
+      {% for bounty in bounties %}
+          {% assign filter = "status:" | append: bounty.status%}
+          {% assign filters = filters | push: filter %}
+      {% endfor %}
+      
+      {% assign filters = filters | uniq %}
+      
+      <div class="flex-stack-left flex-wrap bounty-filter">
+      {%- for filter in filters -%}
+        {% assign filterPair = filter | split: ":" %}
+        <div>
+          <input name="filter" type="checkbox" id="inlineCheckbox{{forloop.index}}" value="{{filter}}" onchange="filterBounties()">
+          <label for="inlineCheckbox{{forloop.index}}">{{filterPair[1]}}</label>
+        </div>
+      {%- endfor -%}
+      </div>
+      
+      {% assign filters = '' | split: '' %}
+      {% for bounty in bounties %}
+        {% for skillset in bounty.skillsets %}
+          {% assign filter = "skillset:" | append: skillset%}
+          {% assign filters = filters | push: filter %}
+        {% endfor %}
+      {% endfor %}
+      
+      {% assign filters = filters | uniq %}
+      
+      <div class="flex-stack-left  flex-wrap bounty-filter">
+      {%- for filter in filters -%}
+        {% assign filterPair = filter | split: ":" %}
+        <div>
+          <input name="filter" type="checkbox" id="inlineCheckbox{{forloop.index}}" value="{{filter}}" onchange="filterBounties()">
+          <label for="inlineCheckbox{{forloop.index}}">{{filterPair[1]}}</label>
+        </div>
+      {%- endfor -%}
+      </div>
+      
+      {% assign filters = '' | split: '' %}
+      {% for bounty in bounties %}
+        {% for tag in bounty.tags %}
+          {% assign filter = "tag:" | append: tag%}
+          {% assign filters = filters | push: filter %}
+        {% endfor %}
+      {% endfor %}
+      
+      {% assign filters = filters | uniq %}
+      
+      <div class="flex-stack-left flex-wrap bounty-filter">
+      {%- for filter in filters -%}
+        {% assign filterPair = filter | split: ":" %}
+        <div>
+          <input name="filter" type="checkbox" id="inlineCheckbox{{forloop.index}}" value="{{filter}}" onchange="filterBounties()">
+          <label for="inlineCheckbox{{forloop.index}}">{{filterPair[1]}}</label>
+        </div>
+      {%- endfor -%}
+      </div>

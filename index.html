@@ -3,37 +3,25 @@ layout: bounty-list
 title: All Bounties
 ---
 
-{% assign bounties=site.pages | where:"layout", "bounty" | where:"status", "open" | sort: "date" | reverse%}
+{% assign bounties=site.pages | where:"layout", "bounty" %}
+
+{% include_relative assets/js/filters.js %}
+
+
+<!-- Header -->
+<header>
+ {% include bounty-filters.html %}
+</header>
+
+{% assign bounties=site.pages | where:"layout", "bounty" | where:"status", "open" | sort: "date" | reverse %}
 
 {% for bounty in bounties %}
-  <div class="bounty-item-container">
-    <div class="bounty-item-head">
-      <div class="flex-justify">
-        <a href="{{bounty.url|relative_url}}"><h3> {{bounty.title}} </h3></a>
-        <h3> {{bounty.reward}} </h3>
-      </div>
-      {% include bounty-tags.html bounty=bounty%}
-    </div>
-    <div class="bounty-item-content">
-      {{ bounty.summary | markdownify}}
-    </div>
-  </div>
+  {% include bounty-item.html bounty=bounty%}
 {% endfor %}
 
 
-{% assign bounties=site.pages | where:"layout", "bounty" | where:"status", "closed"% | sort: "date" | reverse%}
+{% assign bounties=site.pages | where:"layout", "bounty" | where:"status", "closed" | sort: "date" | reverse %}
 
 {% for bounty in bounties %}
-  <div class="bounty-item-container">
-    <div class="bounty-item-head">
-      <div class="flex-justify">
-        <a href="{{bounty.url|relative_url}}"><h3> {{bounty.title}} </h3></a>
-        <h3> {{bounty.reward}} </h3>
-      </div>
-      {% include bounty-tags.html bounty=bounty%}
-    </div>
-    <div class="bounty-item-content">
-      {{ bounty.summary | markdownify}}
-    </div>
-  </div>
+  {% include bounty-item.html bounty=bounty%}
 {% endfor %}
