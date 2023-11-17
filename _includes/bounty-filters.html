@@ -9,10 +9,7 @@
       <div class="flex-stack-left flex-wrap bounty-filter">
       {%- for filter in filters -%}
         {% assign filterPair = filter | split: ":" %}
-        <div>
-          <input name="filter" type="checkbox" id="inlineCheckbox{{filter}}" value="{{filter}}" onchange="filterBounties()">
-          <label for="inlineCheckbox{{filter}}">{{filterPair[1]}}</label>
-        </div>
+        {% include filter-item.html %}
       {%- endfor -%}
       </div>
       
@@ -29,10 +26,7 @@
       <div class="flex-stack-left  flex-wrap bounty-filter">
       {%- for filter in filters -%}
         {% assign filterPair = filter | split: ":" %}
-        <div>
-          <input name="filter" type="checkbox" id="inlineCheckbox{{filter}}" value="{{filter}}" onchange="filterBounties()">
-          <label for="inlineCheckbox{{filter}}">{{filterPair[1]}}</label>
-        </div>
+        {% include filter-item.html %}
       {%- endfor -%}
       </div>
       
@@ -49,9 +43,6 @@
       <div class="flex-stack-left flex-wrap bounty-filter">
       {%- for filter in filters -%}
         {% assign filterPair = filter | split: ":" %}
-        <div>
-          <input name="filter" type="checkbox" id="inlineCheckbox{{filter}}" value="{{filter}}" onchange="filterBounties()">
-          <label for="inlineCheckbox{{filter}}">{{filterPair[1]}}</label>
-        </div>
+        {% include filter-item.html %}
       {%- endfor -%}
       </div>

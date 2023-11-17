@@ -1,31 +1,67 @@
 <script>
 var bounties = {{bounties | jsonify}};
 
+
+document.addEventListener("DOMContentLoaded", function() {
+  loadFilters();
+  filterBounties();
+});
+
+function loadFilters() {
+  
+  const params = (new URL(document.location)).searchParams;
+  
+    console.log("load");
+    console.log(params);
+    for (const [key, value] of params) {
+    
+    let values = value.split('+');
+    console.log(values);
+    values.forEach(function(value)
+    {
+      let elementId = "inlineCheckbox-" + key + ":" + value;
+      console.log(elementId);
+      let element = document.getElementById(elementId);
+      element.checked = true;
+    });
+  }
+  
+}
+
 // filter resources to only ones with all checked categories
 function filterBounties() {
   // get a list of checked filters
-  let checkboxes = Array.from(document.querySelectorAll('input[name=filter]:checked'));
+  let allFilters = Array.from(document.querySelectorAll('input[name=filter]'));
+  let selectedFilters = Array.from(document.querySelectorAll('input[name=filter]:checked'));
   let selectedStatuses = [];
   let selectedSkillsets = [];
-  let selectedTags = [];
+  let selectedTags = [];  
+  let paramsObject = {};
   
-  checkboxes.forEach(function(checkbox)
+  selectedFilters.forEach(function(input)
+  {
+    let value = input.value;
+    let pair = value.split(':');
+    switch(pair[0])
     {
-      let value = checkbox.value;
-      let pair = value.split(':');
-      switch(pair[0])
-      {
-        case "status":
-          selectedStatuses.push(pair[1]);
-        break;
-        case "skillset":
-          selectedSkillsets.push(pair[1]);
-        break;
-        case "tag":
-          selectedTags.push(pair[1]);
-        break;
-      }
-    });
+      case "status":
+        selectedStatuses.push(pair[1]);
+      break;
+      case "skillset":
+        selectedSkillsets.push(pair[1]);
+      break;
+      case "tag":
+        selectedTags.push(pair[1]);
+      break;
+    }
+  });
+  
+  if(selectedStatuses.length > 0) paramsObject.status = selectedStatuses.join('+');
+  if(selectedSkillsets.length > 0) paramsObject.skillset = selectedSkillsets.join('+');
+  if(selectedTags.length > 0) paramsObject.tag = selectedTags.join('+');
+
+  const params = new URLSearchParams(paramsObject);
+  history.pushState("", "", '?' + params);
 
     var items = document.getElementsByClassName("bounty-item-container");
     for (let i = 0; i < items.length; i++) {
@@ -54,8 +90,6 @@ function filterBounties() {
           show = false;
         }
       }
-      
-    
       items[i].style.display = show ? "block" : "none";
     }
 }
