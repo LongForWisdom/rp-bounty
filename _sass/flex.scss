@@ -9,6 +9,11 @@
   justify-content: flex-start;
 }
 
+.flex-stack-right {
+  display: flex; 
+  justify-content: flex-end;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
