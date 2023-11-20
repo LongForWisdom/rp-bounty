@@ -21,4 +21,3 @@ Resources:
 
 - [Jekyll Docs](https://jekyllrb.com/docs/)
 - [Liquid Syntax](https://shopify.github.io/liquid/basics/introduction/)
-

@@ -9,9 +9,20 @@ title: All Bounties
 
 
 <!-- Header -->
-<header>
+<header class="filter-container">
  {% include bounty-filters.html %}
 </header>
+
+<div class="sort-search-container flex-stack-right">
+  <input type="text" placeholder="Search.." id="search-input" onkeyup="filterBounties()">
+    <!--
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+
+  <div id="myDropdown" class="dropdown-content">
+  
+  </div>
+   -->
+</div>
 
 {% assign bounties=site.pages | where:"layout", "bounty" | where:"status", "open" | sort: "date" | reverse %}
 

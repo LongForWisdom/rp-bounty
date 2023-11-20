@@ -4,8 +4,15 @@ var bounties = {{bounties | jsonify}};
 
 document.addEventListener("DOMContentLoaded", function() {
   loadFilters();
-  filterBounties();
+  filterBounties(false);
 });
+
+addEventListener("popstate", function() {
+  location.reload();
+  loadFilters();
+  filterBounties(false);
+});
+
 
 function loadFilters() {
   
@@ -29,10 +36,11 @@ function loadFilters() {
 }
 
 // filter resources to only ones with all checked categories
-function filterBounties() {
+function filterBounties(shouldPushState = true) {
   // get a list of checked filters
   let allFilters = Array.from(document.querySelectorAll('input[name=filter]'));
   let selectedFilters = Array.from(document.querySelectorAll('input[name=filter]:checked'));
+  let searchFilter = document.getElementById("search-input");
   let selectedStatuses = [];
   let selectedSkillsets = [];
   let selectedTags = [];  
@@ -56,12 +64,19 @@ function filterBounties() {
     }
   });
   
+  let searchInput = searchFilter.value.toLowerCase();
+  
   if(selectedStatuses.length > 0) paramsObject.status = selectedStatuses.join('+');
   if(selectedSkillsets.length > 0) paramsObject.skillset = selectedSkillsets.join('+');
   if(selectedTags.length > 0) paramsObject.tag = selectedTags.join('+');
 
-  const params = new URLSearchParams(paramsObject);
-  history.pushState("", "", '?' + params);
+  const prevParams = (new URL(document.location)).searchParams;
+  const newParams = new URLSearchParams(paramsObject);
+  if((newParams != prevParams) && shouldPushState === true)
+  {
+    console.log("push");
+    history.pushState("", "", '?' + newParams);
+  }
 
     var items = document.getElementsByClassName("bounty-item-container");
     for (let i = 0; i < items.length; i++) {
@@ -90,7 +105,31 @@ function filterBounties() {
           show = false;
         }
       }
-      items[i].style.display = show ? "block" : "none";
+      
+      if(searchInput !== null && searchInput !== "")
+      {
+        let lowercaseTitle = bounty.title.toLowerCase();
+        let lowercaseSummary = bounty.summary.toLowerCase();
+        if(lowercaseTitle.includes(searchInput) ||
+           lowercaseSummary.includes(searchInput))
+        {
+          show &= true;
+        }
+        else
+        {
+          show = false;
+        }
+      }
+        
+      
+      if(show)
+      {
+        items[i].classList.remove("bounty-item-anim-hide");
+      }
+      else
+      {
+        items[i].classList.add("bounty-item-anim-hide");
+      }
     }
 }
 </script>
