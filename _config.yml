@@ -31,11 +31,11 @@ theme: minima
 permalink: /:slug
 
 defaults:
-  -
-    scope:
-      path: "bounties"
+  - scope:
+      path: "source/bounties"
     values:
       layout: "bounty"
+      permalink: /:basename
 
 exclude:
   - .github
@@ -50,3 +50,4 @@ exclude:
   - PULL_REQUEST_TEMPLATE.md
   - README.md
   - bounty-template.md
+
