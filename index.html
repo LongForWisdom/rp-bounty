@@ -15,24 +15,13 @@ title: All Bounties
 
 <div class="sort-search-container flex-stack-right">
   <input type="text" placeholder="Search.." id="search-input" onkeyup="filterBounties()">
-    <!--
-  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-
-  <div id="myDropdown" class="dropdown-content">
-  
-  </div>
-   -->
+  <button id="sort-button" onclick="toggleClass('sort-dropdown', 'dropdown-content-show')" data-sort="date-desc"></button>
+    <div id="sort-dropdown" class="dropdown-content"> <!-- dynamically filled from JS sorts. Classes: sort-dropdown-button -->
+    </div>
 </div>
 
-{% assign bounties=site.pages | where:"layout", "bounty" | where:"status", "open" | sort: "date" | reverse %}
-
-{% for bounty in bounties %}
-  {% include bounty-item.html bounty=bounty%}
-{% endfor %}
-
-
-{% assign bounties=site.pages | where:"layout", "bounty" | where:"status", "closed" | sort: "date" | reverse %}
-
-{% for bounty in bounties %}
-  {% include bounty-item.html bounty=bounty%}
-{% endfor %}
+<div id="bounty-list">  
+  {% for bounty in bounties %}
+    {% include bounty-item.html bounty=bounty %}
+  {% endfor %}
+</div>
