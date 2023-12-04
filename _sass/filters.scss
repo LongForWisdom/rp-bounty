@@ -6,3 +6,26 @@
 .bounty-filter {
   background-color: #eeeeee;
 }
+
+.sort-search-container {
+
+}
+
+.dropdown-content {
+  @extend .flex-stack-top;
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 160px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content-show {
+  display: flex;
+}
+
+.sort-dropdown-button { //dynamically applied to sort dropdown buttons
+
+}
