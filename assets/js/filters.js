@@ -30,7 +30,13 @@ function loadParams() {
   
   const params = (new URL(document.location)).searchParams;
   const filters = ["skillset", "status" ,"tag"];
-  let hasFilterString = false;
+  
+  //set sane default.
+  if(!params.has("status"))
+  {
+    params.append("status","open");
+    console.log(params);
+  }
   
   for (const [key, value] of params) {
     let values = value.split('+');
@@ -41,7 +47,6 @@ function loadParams() {
         let elementId = "inlineCheckbox-" + key + ":" + value;
         let element = document.getElementById(elementId);
         element.checked = true;
-        hasFilterString = true;
       }
       else if(key == "sort")
       {
@@ -51,7 +56,7 @@ function loadParams() {
     });
   }
   
-  if(hasFilterString) filterBounties(false);  
+  filterBounties(false);
   sortBounties();
 }
 
@@ -122,6 +127,8 @@ function filterBounties() {
 
   let searchInput = searchFilter.value.toLowerCase();
 
+  let acc = 0;
+
   let items = document.getElementsByClassName("bounty-item-container");
   for (let i = 0; i < items.length; i++) {
     let show = true;
@@ -169,12 +176,18 @@ function filterBounties() {
     if(show)
     {
       items[i].classList.remove("bounty-item-anim-hide");
+      acc++;
     }
     else
     {
       items[i].classList.add("bounty-item-anim-hide");
     }
   }
+  
+  
+  let counter = document.getElementById("filter-count");
+  counter.textContent = acc + " matching bounties";
+  
 }
 
 function addSortButtons()

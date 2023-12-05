@@ -13,11 +13,14 @@ title: All Bounties
  {% include bounty-filters.html %}
 </header>
 
-<div class="sort-search-container flex-stack-right">
-  <input type="text" placeholder="Search.." id="search-input" onkeyup="filterBounties()">
-  <button id="sort-button" onclick="toggleClass('sort-dropdown', 'dropdown-content-show')" data-sort="date-desc"></button>
-    <div id="sort-dropdown" class="dropdown-content"> <!-- dynamically filled from JS sorts. Classes: sort-dropdown-button -->
-    </div>
+<div>
+  <div class="sort-search-container flex-stack-right">
+    <input class="margin-search" type="text" placeholder="Search.." id="search-input" onkeyup="filterBounties()">
+    <button id="sort-button" class="margin-search" onclick="toggleClass('sort-dropdown', 'dropdown-content-show')" data-sort="date-desc"></button>
+      <div id="sort-dropdown" class="dropdown-content"> <!-- dynamically filled from JS sorts. Classes: sort-dropdown-button -->
+      </div>
+  </div>
+  <span id=filter-count class="filter-count">Test</span>
 </div>
 
 <div id="bounty-list">  
