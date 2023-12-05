@@ -21,7 +21,8 @@ github_username:  LongForWisdom
 repository: https://github.com/LongForWisdom/rp-bounties
 
 header_pages:
-  - all.html
+  - index.html
+  - faq.html
 
 # Build settings
 highlighter: rouge
