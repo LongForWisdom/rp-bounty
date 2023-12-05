@@ -8,8 +8,7 @@
       
       <div class="flex-stack-left flex-wrap bounty-filter">
       {%- for filter in filters -%}
-        {% assign filterPair = filter | split: ":" %}
-        {% include filter-item.html %}
+        {% include filter-item.html filter=filter%}
       {%- endfor -%}
       </div>
       
@@ -25,8 +24,7 @@
       
       <div class="flex-stack-left  flex-wrap bounty-filter">
       {%- for filter in filters -%}
-        {% assign filterPair = filter | split: ":" %}
-        {% include filter-item.html %}
+        {% include filter-item.html filter=filter%}
       {%- endfor -%}
       </div>
       
@@ -42,7 +40,6 @@
       
       <div class="flex-stack-left flex-wrap bounty-filter">
       {%- for filter in filters -%}
-        {% assign filterPair = filter | split: ":" %}
-        {% include filter-item.html %}
+        {% include filter-item.html filter=filter%}
       {%- endfor -%}
       </div>

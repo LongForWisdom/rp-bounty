@@ -1,0 +1,20 @@
+
+.site-header {
+  border-top: 0px solid $grey-color-dark;
+  border-bottom: 1px solid $grey-color-light;
+  min-height: $spacing-unit * 1.865;
+
+  // Positioning context for the mobile navigation icon
+  position: relative;
+}
+
+.header-logo {
+  margin: 0px 8px 0px 0px;
+  height: 40px;
+}
+
+.site-nav {
+  float: left;
+  line-height: $base-line-height * $base-font-size;
+  margin: 0px 0px 8px 0px;
+}
