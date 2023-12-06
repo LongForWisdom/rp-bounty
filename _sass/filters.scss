@@ -8,18 +8,21 @@
 }
 
 .sort-search-container {
+  position: relative;
+}
 
+.dropdown-backing {
+  position: relative;
 }
 
 .dropdown-content {
   @extend .flex-stack-top;
   display: none;
   position: absolute;
-  background-color: #f6f6f6;
-  min-width: 160px;
-  overflow: auto;
-  border: 1px solid #ddd;
+  min-width: 100%;
+  right: 0px;
   z-index: 1;
+  top: 21px;
 }
 
 .dropdown-content-show {
@@ -27,15 +30,16 @@
 }
 
 .sort-dropdown-button { //dynamically applied to sort dropdown buttons
+  margin: 2px 0px 0px 0px;
+}
 
+#sort-button {
 }
 
 .margin-search {
-  margin: 0px 0px 0px 6px;
+  margin: 0px 6px 0px 0px;
+  height: 15px;
 }
 
 .filter-count {
-  align: right;
-  text-align: right;
-  display: block;
 }

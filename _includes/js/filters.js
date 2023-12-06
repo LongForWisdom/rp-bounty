@@ -1,4 +1,3 @@
-<script>
 var bounties = {{bounties | jsonify}};
 var bountyLookup = {};
 var sorts = {
@@ -35,7 +34,6 @@ function loadParams() {
   if(!params.has("status"))
   {
     params.append("status","open");
-    console.log(params);
   }
   
   for (const [key, value] of params) {
@@ -216,5 +214,3 @@ function sortBounties()
   sorted.forEach((item) => { parent.appendChild(item);});
   sortDisplay.textContent = "Sort By: " + sorts[sortType].displayName;
 }
-
-</script>

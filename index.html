@@ -1,12 +1,12 @@
 ---
 layout: bounty-list
-title: Listing
-nav-title: Listing
+title: Bounties
+nav-title: Bounties
 ---
 
 {% assign bounties=site.pages | where:"layout", "bounty" %}
 
-{% include_relative assets/js/filters.js %}
+<script>{% include js/filters.js %}</script>
 
 
 <!-- Header -->
@@ -14,12 +14,14 @@ nav-title: Listing
  {% include bounty-filters.html %}
 </header>
 
-<div>
+<div class="flex-stack-top flex-align-right">
   <div class="sort-search-container flex-stack-right">
-    <input class="margin-search" type="text" placeholder="Search.." id="search-input" onkeyup="filterBounties()">
-    <button id="sort-button" class="margin-search" onclick="toggleClass('sort-dropdown', 'dropdown-content-show')" data-sort="date-desc"></button>
+    <input class="margin-search" type="text" placeholder="Search.." id="search-input" onkeyup="filterBounties()"/>
+    <div class="dropdown-backing flex-stack-right">
+      <button id="sort-button" onclick="toggleClass('sort-dropdown', 'dropdown-content-show')" data-sort="date-desc"></button>
       <div id="sort-dropdown" class="dropdown-content"> <!-- dynamically filled from JS sorts. Classes: sort-dropdown-button -->
       </div>
+    </div>
   </div>
   <span id=filter-count class="filter-count">Test</span>
 </div>
