@@ -1,7 +1,7 @@
 {% assign bounties=site.pages | where:"layout", "bounty" | sort:"date" | reverse | first%}
 var mostRecentBountyDate = Date.parse("{{bounties.date}}");
 var nextGMCUpdate = Date.parse("2024-12-31");
-var nextGMCPayout = Date.parse("2023-12-11");
+var nextGMCPayout = Date.parse("2023-12-15");
 var nextBountyCutoff = Date.parse("2023-12-10");
 
 document.addEventListener("DOMContentLoaded", function() {
