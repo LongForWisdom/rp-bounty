@@ -8,9 +8,24 @@
   position: relative;
 }
 
+.wrapper {
+  padding-top: 6px;
+}
+
 .header-logo {
   margin: 0px 8px 0px 0px;
   height: 40px;
+}
+
+.header-list { 
+  display: grid; 
+  grid-template-columns: 
+  max-content auto; 
+  margin: 0px 8px 8px 0px;
+}
+
+dt {
+  margin: 0px 24px 0px 0px;
 }
 
 .site-nav {
@@ -18,3 +33,5 @@
   line-height: $base-line-height * $base-font-size;
   margin: 0px 0px 8px 0px;
 }
+
+
