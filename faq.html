@@ -1,5 +1,14 @@
 ---
-layout: page
-title: Bounty FAQs
+layout: anchored
 nav-title: FAQ
 ---
+
+{% assign file = site.static_files | find: "path", "source/meta/bounty-faq.md" %}
+    
+{% if file %}
+  {% capture imported-content %}{% include_relative source/meta/bounty-faq.md %}{% endcapture %}
+  {{imported-content | markdownify}}
+{% else %}
+  <p>Couldn't find the FAQ file!</p>
+{% endif %}
+
