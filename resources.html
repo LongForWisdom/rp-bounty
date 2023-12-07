@@ -3,11 +3,14 @@ layout: anchored
 nav-title: Resources
 ---
 
-{% assign file = site.static_files | find: "path", "source/meta/resources.md" %}
+{% for static_file in site.static_files %}
+  {% if static_file.path == "/source/meta/resources.md" %}
+    {% capture imported-content %}{% include_relative source/meta/resources.md %}{% endcapture %}
+    {{imported-content | markdownify}}
+    {% assign found=true %}
+  {% endif %}
+{% endfor %}
 
-{% if file %}
-  {% capture imported-content %}{% include_relative source/meta/resources.md %}{% endcapture %}
-  {{imported-content | markdownify}}
-{% else %}
- <p>Couldn't find the resources file!</p>
+{% if found!=true %}
+  <p>Couldn't find the resources file!</p>
 {% endif %}
