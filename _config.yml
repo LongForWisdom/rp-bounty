@@ -23,6 +23,7 @@ repository: https://github.com/LongForWisdom/rp-bounties
 header_pages:
   - index.html
   - faq.html
+  - resources.html
 
 # Build settings
 highlighter: rouge
