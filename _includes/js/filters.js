@@ -1,9 +1,21 @@
 var bounties = {{bounties | jsonify}};
+var prices = JSON.parse('{{site.data.prices | jsonify}}');
 var bountyLookup = {};
 var sorts = {
   "date-desc": { displayName: "Newest", comparator: function(a,b) { return Date.parse(bountyLookup[b.id].date) - Date.parse(bountyLookup[a.id].date);}},
   "date-asc": { displayName: "Oldest", comparator: function(a,b) { return sorts["date-desc"].comparator(b,a);}},
-};
+  "amount-desc": { displayName: "Largest", comparator: function(a,b) {
+                   let bountyA = bountyLookup[a.id];
+                   let bountyB = bountyLookup[b.id];
+                   let bountyAValue = bountyA.reward.max * prices[bountyA.reward.unit];
+                   let bountyBValue = bountyB.reward.max * prices[bountyB.reward.unit];
+                   return bountyBValue - bountyAValue; }},
+  "amount-asc": { displayName: "Smallest", comparator: function(a,b) {
+                   let bountyA = bountyLookup[a.id];
+                   let bountyB = bountyLookup[b.id];
+                   let bountyAValue = bountyA.reward.min * prices[bountyA.reward.unit];
+                   let bountyBValue = bountyB.reward.min * prices[bountyB.reward.unit];
+                   return bountyAValue - bountyBValue; }}};
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -209,7 +221,7 @@ function sortBounties()
   let sortDisplay = document.getElementById("sort-button");
   let elementArray = Array.from(elements);
   let sortType = sortDisplay.dataset.sort;
-
+  
   let sorted = elementArray.sort(sorts[sortType].comparator);
   sorted.forEach((item) => { parent.appendChild(item);});
   sortDisplay.textContent = "Sort By: " + sorts[sortType].displayName;

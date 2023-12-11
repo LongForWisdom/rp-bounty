@@ -1,15 +1,48 @@
 {% assign bounties=site.pages | where:"layout", "bounty" | sort:"date" | reverse | first%}
+{% assign dateinfo=site.data.dates %}
 var mostRecentBountyDate = Date.parse("{{bounties.date}}");
-var nextGMCUpdate = Date.parse("2023-12-31");
-var nextGMCPayout = Date.parse("2023-12-15");
-var nextBountyCutoff = Date.parse("2023-12-10");
+var dateInfo = JSON.parse('{{dateinfo | jsonify}}');
+var prices = JSON.parse('{{site.data.prices | jsonify}}');
 
 document.addEventListener("DOMContentLoaded", function() {
-  setRelativeTimeString(mostRecentBountyDate - Date.now(), "bounty-countdown-value");
-  setRelativeTimeString(nextGMCUpdate - Date.now(), "bounty-update");
-  setRelativeTimeString(nextGMCPayout - Date.now(), "bounty-payout");
-  setRelativeTimeString(nextBountyCutoff - Date.now(), "bounty-cutoff");
+  let dates = getDates();
+  setRelativeTimeString(dates.mostRecentBounty - Date.now(), "bounty-countdown-value");
+  setRelativeTimeString(dates.nextGMCUpdate - Date.now(), "bounty-update");
+  setRelativeTimeString(dates.nextGMCPayout - Date.now(), "bounty-payout");
+  setRelativeTimeString(dates.nextBountyCutoff - Date.now(), "bounty-cutoff");
+  convertRPLUSD();
+  formatAmounts();
 });
+
+function getDates()
+{
+  let roundsInfo = dateInfo.rounds;
+  let dateObject = {};
+  dateObject.mostRecentBounty = mostRecentBountyDate;
+  let now = new Date();
+  now.setDate(now.getDate());
+  
+  let bestUpdate = new Date();
+  let bestPayout = new Date();
+  let bestCutoff = new Date();
+  
+  roundsInfo.sort( (a,b) => b.round - a.round); // reverse order by round
+  roundsInfo.forEach(function(round){
+    let currentUpdate = Date.parse(round.result);
+    let currentPayout = Date.parse(round.payout);
+    let currentCutoff = Date.parse(round.end);
+    
+    if(currentUpdate - now > 0) bestUpdate = currentUpdate;
+    if(currentPayout - now > 0) bestPayout = currentPayout;
+    if(currentCutoff - now > 0) bestCutoff = currentCutoff;
+  });
+  
+  dateObject.nextGMCUpdate = bestUpdate;
+  dateObject.nextGMCPayout = bestPayout;
+  dateObject.nextBountyCutoff = bestCutoff;
+  
+  return dateObject;
+}
 
 function setRelativeTimeString(timeDiff, elementId)
 {
@@ -30,4 +63,25 @@ function getRelativeTimeString(diff)
     }
     return val
   }).join('');
+}
+
+function formatAmounts()
+{
+  let elements = Array.from(document.getElementsByClassName("format-number"));
+  let numberFormat = Intl.NumberFormat('en-US', {style: "decimal", maximumFractionalDigits: 2});
+  elements.forEach(function(element)
+  {
+    element.innerHTML = numberFormat.format(element.innerHTML);
+  });
+}
+
+function convertRPLUSD()
+{
+  let elements = Array.from(document.getElementsByClassName("convert-RPLUSD"));
+  let numberFormat = Intl.NumberFormat('en-US', {style: "decimal", maximumFractionalDigits: 2});
+  elements.forEach(function(element)
+  {
+    let value = element.innerHTML;
+    element.innerHTML = value * prices.RPL;
+  });
 }

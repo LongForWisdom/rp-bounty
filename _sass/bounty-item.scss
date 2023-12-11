@@ -26,8 +26,13 @@ $code-col: black;
   padding: 8px;
 }
 
-.bounty-item-head h3 {
+.price-margin {
+  margin-bottom: 0px;
+}
+
+.bounty-item-head {
   margin-bottom: 8px;
+  vertical-align: top;
 }
 
 .bounty-item-foot {
