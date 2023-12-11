@@ -2,6 +2,7 @@
 {% assign dateinfo=site.data.dates %}
 var mostRecentBountyDate = Date.parse("{{bounties.date}}");
 var dateInfo = JSON.parse('{{dateinfo | jsonify}}');
+var prices = JSON.parse('{{site.data.prices | jsonify}}');
 
 document.addEventListener("DOMContentLoaded", function() {
   let dates = getDates();
@@ -9,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
   setRelativeTimeString(dates.nextGMCUpdate - Date.now(), "bounty-update");
   setRelativeTimeString(dates.nextGMCPayout - Date.now(), "bounty-payout");
   setRelativeTimeString(dates.nextBountyCutoff - Date.now(), "bounty-cutoff");
+  convertRPLUSD();
   formatAmounts();
 });
 
@@ -70,5 +72,16 @@ function formatAmounts()
   elements.forEach(function(element)
   {
     element.innerHTML = numberFormat.format(element.innerHTML);
+  });
+}
+
+function convertRPLUSD()
+{
+  let elements = Array.from(document.getElementsByClassName("convert-RPLUSD"));
+  let numberFormat = Intl.NumberFormat('en-US', {style: "decimal", maximumFractionalDigits: 2});
+  elements.forEach(function(element)
+  {
+    let value = element.innerHTML;
+    element.innerHTML = value * prices.RPL;
   });
 }

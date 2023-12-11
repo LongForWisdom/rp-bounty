@@ -1,6 +1,2 @@
-  <span class="format-number">{{include.reward.min}}</span>
-  {% if include.reward.min != include.reward.max %}
-  <span>-</span>
-  <span class="format-number">{{include.reward.max}}</span>
-  {% endif %}
-  <span>{{include.reward.unit}}</span>
+<!-- Horrible single line formatting because spans + liquid don't mix well. -->
+{% if include.convert == "RPL" %}<span>~</span><span class="convert-RPLUSD format-number">{{include.reward.min}}</span>{% else %}<span class="format-number">{{include.reward.min}}</span>{% endif %}{% if include.reward.min != include.reward.max %}<span>-</span>{% endif %}{% if include.reward.min != include.reward.max and include.convert == "RPL" %}<span class="convert-RPLUSD format-number">{{include.reward.max}}</span>{% elsif include.reward.min != include.reward.max%}<span class="format-number">{{include.reward.max}}</span>{% endif %}{% if include.convert != "RPL" %} <span>{{include.reward.unit}}</span>{% else %} <span>USD</span>{% endif %}
