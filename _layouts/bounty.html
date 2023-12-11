@@ -13,7 +13,8 @@ layout: default
   <header class="post-header">
     <div class="flex-justify">
       <h1 class="post-title"> {{ page.title | escape }} </h1>
-      <h1 class="post-title"> {{page.reward}} </h1>
+      <h1 class="post-title">{% include bounty-amount.html reward=page.reward%}</h1>
+      
     </div>
     <div class="flex-justify">
       {% assign bounty = page %}

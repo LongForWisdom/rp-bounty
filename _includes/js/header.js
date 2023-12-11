@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
   setRelativeTimeString(dates.nextGMCUpdate - Date.now(), "bounty-update");
   setRelativeTimeString(dates.nextGMCPayout - Date.now(), "bounty-payout");
   setRelativeTimeString(dates.nextBountyCutoff - Date.now(), "bounty-cutoff");
+  formatAmounts();
 });
 
 function getDates()
@@ -60,4 +61,14 @@ function getRelativeTimeString(diff)
     }
     return val
   }).join('');
+}
+
+function formatAmounts()
+{
+  let elements = Array.from(document.getElementsByClassName("format-number"));
+  let numberFormat = Intl.NumberFormat('en-US', {style: "decimal", maximumFractionalDigits: 2});
+  elements.forEach(function(element)
+  {
+    element.innerHTML = numberFormat.format(element.innerHTML);
+  });
 }
