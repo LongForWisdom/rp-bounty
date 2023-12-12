@@ -14,13 +14,11 @@ jobs:
         with:
           feed_url: https://dao.rocketpool.net/c/grant-bounties/13.rss
           script_output: json
-          last_parsed_file: .github/workflows/last-parsed.json
           github_token: ${{ secrets.PAT }}
       - name: Copy Result
         shell: bash
         run: |
-          ls
-          mv last-parsed.json ../../_data/gmc-rss.json
+          mv .github/last-parsed.json _data/gmc-rss.json
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with: 
