@@ -34,7 +34,7 @@ permalink: /:slug
 
 defaults:
   - scope:
-      path: "source/bounties"
+      path: "bounties"
     values:
       layout: "bounty"
       permalink: /:basename

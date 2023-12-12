@@ -4,8 +4,8 @@ nav-title: FAQ
 ---
 
 {% for static_file in site.static_files %}
-  {% if static_file.path == "/source/meta/bounty-faq.md" %}
-    {% capture imported-content %}{% include_relative source/meta/bounty-faq.md %}{% endcapture %}
+  {% if static_file.path == "/docs/bounty-faq.md" %}
+    {% capture imported-content %}{% include_relative docs/bounty-faq.md %}{% endcapture %}
     {{imported-content | markdownify}}
     {% assign found=true %}
   {% endif %}

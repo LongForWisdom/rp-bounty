@@ -4,8 +4,8 @@ nav-title: Resources
 ---
 
 {% for static_file in site.static_files %}
-  {% if static_file.path == "/source/meta/resources.md" %}
-    {% capture imported-content %}{% include_relative source/meta/resources.md %}{% endcapture %}
+  {% if static_file.path == "/docs/resources.md" %}
+    {% capture imported-content %}{% include_relative docs/resources.md %}{% endcapture %}
     {{imported-content | markdownify}}
     {% assign found=true %}
   {% endif %}
