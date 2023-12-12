@@ -13,6 +13,7 @@ jobs:
         uses: chrisreddington/rss-parser@v0.0.6
         with:
           feed_url: https://dao.rocketpool.net/c/grant-bounties/13.rss
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create PR
         run: gh pr create -B main 
       - name: Create Pull Request
