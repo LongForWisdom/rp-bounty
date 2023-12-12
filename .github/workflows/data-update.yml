@@ -14,10 +14,6 @@ jobs:
         with: 
           source: .github/feeds.yaml # An optional parameter to specify the source. Defaults to feeds.yaml
           target: _data/gmc-rss.json # An optional parameter to specify the target. Defaults to feeds.json
-      - name: Copy Result
-        run: |
-          ls
-          cp "feeds.json" "./_data/gmc-rss.json"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with: 
