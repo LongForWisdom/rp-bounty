@@ -15,7 +15,7 @@ jobs:
           feed_url: https://dao.rocketpool.net/c/grant-bounties/13.rss
           script_output: json
           last_parsed_file: .github/workflows/last-parsed.json
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PAT }}
       - name: Create PR
         run: gh pr create -B main 
       - name: Create Pull Request
