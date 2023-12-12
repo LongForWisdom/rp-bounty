@@ -9,12 +9,8 @@ jobs:
         uses: actions/checkout@v4.1.1  
         with:
           submodules: 'true'
-      - name: RSS Parser
-        uses: chrisreddington/rss-parser@v0.0.6
-        with:
-          feed_url: https://dao.rocketpool.net/c/grant-bounties/13.rss
-          script_output: json
-          github_token: ${{ secrets.PAT }}
+      - name: RSS to JSON
+        uses: I-Valchev/rss-to-json@1.0.0
       - name: Copy Result
         working-directory: .github
         run: |
