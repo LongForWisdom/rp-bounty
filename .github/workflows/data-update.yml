@@ -1,0 +1,25 @@
+name: Data Update
+on: workflow_dispatch
+jobs:
+  get_rss: 
+    runs-on: ubuntu-latest
+    name: Get GMC Posts
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4.1.1  
+        with:
+          submodules: 'true'
+      - name: RSS Parser
+        uses: chrisreddington/rss-parser@v0.0.6
+        with:
+          feed_url: https://dao.rocketpool.net/c/grant-bounties/13.rss
+      - name: Create PR
+        run: gh pr create -B main 
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with: 
+          commit-message: Update data
+          committer: GitHub <noreply@github.com>
+          branch: temp-data-updates
+          delete-branch: true
+          title: 'Update Data'
