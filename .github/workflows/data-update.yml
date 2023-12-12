@@ -11,6 +11,9 @@ jobs:
           submodules: 'true'
       - name: RSS to JSON
         uses: I-Valchev/rss-to-json@1.0.0
+        with: 
+          source: .github/feeds.yaml # An optional parameter to specify the source. Defaults to feeds.yaml
+          target: _data/gmc-rss.json # An optional parameter to specify the target. Defaults to feeds.json
       - name: Copy Result
         run: |
           ls
