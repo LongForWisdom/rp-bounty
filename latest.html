@@ -1,0 +1,24 @@
+---
+layout: page
+nav-title: Latest
+title: Latest GMC Posts
+---
+
+{% assign num = 20 %}
+{% for i in (1..num) %}
+  {% assign roundNumber = num | plus: 1 | minus: i %}
+  {% assign roundTitle = 'Round ' | append:roundNumber %}
+  {% assign round_posts=site.data.gmc-rss | where_exp:"item", "item.title contains roundTitle" %}
+
+  {% if round_posts.size != 0 %}
+    {% assign roundDiscuss=round_posts | where_exp:"item", "item.title contains 'Community Discussion'" %}
+    {% assign roundResult=round_posts | where_exp:"item", "item.title contains 'Results'" %}
+    {% assign roundBounty=round_posts | where_exp:"item", "item.title contains 'Bounty Applications'" %}
+
+    <h3>{{roundTitle}}</h3>
+    {% if roundResult.size > 0%}<span><a href="{{roundResult[0].link}}">Results</a></span><br/>{% endif %}
+    {% if roundDiscuss.size > 0%}<span><a href="{{roundDiscuss[0].link}}">Discussion</a></span><br/>{% endif %}
+    {% if roundBounty.size > 0%}<span><a href="{{roundBounty[0].link}}">Applications</a></span><br/>{% endif %}
+    <br/>
+  {% endif %}
+{% endfor %}
