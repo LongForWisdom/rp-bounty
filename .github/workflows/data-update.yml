@@ -12,8 +12,13 @@ jobs:
       - name: RSS to JSON
         uses: I-Valchev/rss-to-json@1.0.0
         with: 
-          source: .github/feeds.yaml # An optional parameter to specify the source. Defaults to feeds.yaml
-          target: _data/gmc-rss.json # An optional parameter to specify the target. Defaults to feeds.json
+          source: .github/feeds.yaml
+          target: _data/gmc-rss.json
+      - name: Copy Source Data
+        run: |
+          cp "_source/meta/dates.yml" "_data/dates.yml"
+          cp "_source/meta/contacts.yml" "_data/contacts.yml"
+          cp "_source/bounties/*" "bounties"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with: 
