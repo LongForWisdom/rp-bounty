@@ -16,9 +16,10 @@ jobs:
           script_output: json
           github_token: ${{ secrets.PAT }}
       - name: Copy Result
-        shell: bash
+        working-directory: .github
         run: |
-          mv .github/last-parsed.json _data/gmc-rss.json
+          ls
+          cp "last-parsed.json" "./_data/gmc-rss.json"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with: 
