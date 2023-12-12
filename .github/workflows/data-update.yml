@@ -12,10 +12,9 @@ jobs:
       - name: RSS to JSON
         uses: I-Valchev/rss-to-json@1.0.0
       - name: Copy Result
-        working-directory: .github
         run: |
           ls
-          cp "last-parsed.json" "./_data/gmc-rss.json"
+          cp "feeds.json" "./_data/gmc-rss.json"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with: 
