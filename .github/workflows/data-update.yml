@@ -1,0 +1,30 @@
+name: Data Update
+on: workflow_dispatch
+jobs:
+  get_rss: 
+    runs-on: ubuntu-latest
+    name: Get GMC Posts
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4.1.1  
+        with:
+          submodules: 'true'
+      - name: RSS to JSON
+        uses: I-Valchev/rss-to-json@1.0.0
+        with: 
+          source: .github/feeds.yaml
+          target: _data/gmc-rss.json
+      - name: Copy Source Data
+        run: |
+          cp "_source/meta/dates.yml" "_data/dates.yml"
+          cp "_source/meta/contacts.yml" "_data/contacts.yml"
+          cp "_source/bounties/*" "bounties"
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with: 
+          commit-message: Update data
+          committer: GitHub <noreply@github.com>
+          token: ${{ secrets.PAT }}
+          branch: temp-data-updates
+          delete-branch: true
+          title: 'Update Data'
