@@ -19,6 +19,8 @@ jobs:
           cp "_source/meta/dates.yml" "_data/dates.yml"
           cp "_source/meta/contacts.yml" "_data/contacts.yml"
           cp "_source/bounties/*" "bounties"
+          cp "_source/meta/bounty-faq.md" "docs/bounty-faq.md"
+          cp "_source/meta/resources.md" "docs/resources.md"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with: 
