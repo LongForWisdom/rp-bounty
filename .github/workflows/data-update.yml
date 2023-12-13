@@ -19,7 +19,7 @@ jobs:
         with: 
           url: "https://optimism-mainnet.infura.io/v3/${{ secrets.INFURA }}"
           data: '{"jsonrpc": "2.0", "id": 1, "method": "eth_call", "params": [{"to":"0xADE082c91A6AeCC86fC11704a830e933e1b382eA","data":"0x50d25bcd"}, "latest"]}'
-          responseFile: _data/price-responses/rpl-usd.json
+          responseFile: _data/rpl-usd.json
       - name: Copy Source Data
         run: |
           # cp "_source/meta/dates.yml" "_data/dates.yml"
