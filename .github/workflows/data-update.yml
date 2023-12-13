@@ -24,7 +24,7 @@ jobs:
         run: |
           # cp "_source/meta/dates.yml" "_data/dates.yml"
           # cp "_source/meta/contacts.yml" "_data/contacts.yml"
-          cp -R "_source/bounties" "bounties"
+          cp -R "_source/bounties" "."
           cp "_source/meta/bounty-faq.md" "docs/bounty-faq.md"
           cp "_source/meta/resources.md" "docs/resources.md"
       - name: Create Pull Request
