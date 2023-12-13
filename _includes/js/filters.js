@@ -1,6 +1,8 @@
 var bounties = {{bounties | jsonify}};
-var prices = JSON.parse('{{site.data.prices | jsonify}}');
+var prices = { "USD" : 1 };
+var rawRPLUSD = JSON.parse('{{site.data.price-responses.rpl-usd | jsonify}}');
 var bountyLookup = {};
+
 var sorts = {
   "date-desc": { displayName: "Newest", comparator: function(a,b) { return Date.parse(bountyLookup[b.id].date) - Date.parse(bountyLookup[a.id].date);}},
   "date-asc": { displayName: "Oldest", comparator: function(a,b) { return sorts["date-desc"].comparator(b,a);}},
@@ -21,6 +23,7 @@ var sorts = {
 document.addEventListener("DOMContentLoaded", function() {
   bounties.forEach((bounty) => { bountyLookup[bounty.code] = bounty; });
   addSortButtons();
+  setPriceValues();
   
   loadParams();
   saveParams(false);
@@ -31,6 +34,11 @@ addEventListener("popstate", function() {
   loadParams();
   saveParams(false);
 });
+
+function setPriceValues()
+{
+  prices["RPL"] = parseInt(rawRPLUSD.result, 16) / 10e7;
+}
 
 function toggleClass(element, cssClass)
 {

@@ -14,7 +14,7 @@ layout: default
     <div class="flex-justify">
       <h1 class="post-title"> {{ page.title | escape }} </h1>
       <div class="flex-stack-top"> 
-        <h1 class="post-title">{% include bounty-amount.html reward=page.reward%}</h1>
+        <h1 class="post-title unconverted-price">{% include bounty-amount.html reward=page.reward%}</h1>
         {% if page.reward.unit == "RPL" %}
         <h3 class="converted-price">{% include bounty-amount.html reward=page.reward convert="RPL"%}</h3>
         {% endif %}
