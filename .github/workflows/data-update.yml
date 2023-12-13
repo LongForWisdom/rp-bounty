@@ -3,7 +3,7 @@ on: workflow_dispatch
 jobs:
   get_rss: 
     runs-on: ubuntu-latest
-    name: Get GMC Posts
+    name: Update All Data
     steps: 
       - name: Checkout
         uses: actions/checkout@v4.1.1  
@@ -14,6 +14,12 @@ jobs:
         with: 
           source: .github/feeds.yaml
           target: _data/gmc-rss.json
+      - name: Get RPL Price
+        uses: fjogeleit/http-request-action@v1.14.2
+        with: 
+          url: "https://mainnet.infura.io/v3/${{ secrets.INFURA }}"
+          data: '{"jsonrpc": "2.0", "id": 1, "method": "eth_blockNumber", "params": []}'
+          responseFile: _data/rpl-price.json
       - name: Copy Source Data
         run: |
           cp "_source/meta/dates.yml" "_data/dates.yml"
