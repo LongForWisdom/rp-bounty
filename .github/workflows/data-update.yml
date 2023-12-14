@@ -1,0 +1,51 @@
+name: Data Update
+on: 
+  workflow_dispatch:
+  schedule: 
+    - cron: "00 17 * * *"
+      
+jobs:
+  get_rss: 
+    runs-on: ubuntu-latest
+    name: Update All Data
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4.1.1  
+        with:
+          submodules: 'true'
+          ref: main
+          
+      - name: RSS to JSON
+        continue-on-error: true
+        uses: I-Valchev/rss-to-json@1.0.0
+        with: 
+          source: .github/feeds.yaml
+          target: _data/gmc-rss.json
+          
+      - name: Get RPL Price
+        continue-on-error: true
+        uses: fjogeleit/http-request-action@v1.14.2
+        with: 
+          url: "https://optimism-mainnet.infura.io/v3/${{ secrets.INFURA }}"
+          data: '{"jsonrpc": "2.0", "id": 1, "method": "eth_call", "params": [{"to":"0xADE082c91A6AeCC86fC11704a830e933e1b382eA","data":"0x50d25bcd"}, "latest"]}'
+          responseFile: _data/price-responses/rpl-usd.json
+          
+      - name: Copy Source Data
+        continue-on-error: true
+        run: |
+          rm -f -r "bounties"
+          cp -R "_source/bounties" "."
+          cp "_source/meta/bounty-faq.md" "docs/bounty-faq.md"
+          cp "_source/meta/resources.md" "docs/resources.md"
+          cp "_source/meta/dates.yml" "_data/dates.yml"
+          cp "_source/meta/contacts.yml" "_data/contacts.yml"
+          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with: 
+          commit-message: "Automated update of source data via github action"
+          token: ${{ secrets.PAT }}
+          branch: temp-data-updates
+          delete-branch: true
+          title: 'Update Source Data'
+          body: "Automated update of source data via github action. Includes add and remove of bounties, update of docs files and RPL-USD price update."

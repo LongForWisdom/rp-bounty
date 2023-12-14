@@ -21,6 +21,7 @@ github_username:  LongForWisdom
 repository: https://github.com/LongForWisdom/rp-bounties
 
 header_pages:
+  - latest.html
   - index.html
   - faq.html
   - resources.html
@@ -34,7 +35,7 @@ permalink: /:slug
 
 defaults:
   - scope:
-      path: "source/bounties"
+      path: "bounties"
     values:
       layout: "bounty"
       permalink: /:basename
