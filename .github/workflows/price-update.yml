@@ -31,8 +31,8 @@ jobs:
           token: ${{ secrets.PAT }}
           branch: temp-data-updates
           delete-branch: true
-          title: 'Update Source Data'
-          body: "Automated update of source data via github action. Includes add and remove of bounties, update of docs files and RPL-USD price update."
+          title: 'Update Price Data'
+          body: "Automated update of price data via github action. Currently RPL-USD price update."
   
       - name: Merge Pull Request
         uses: juliangruber/merge-pull-request-action@v1.2.0
