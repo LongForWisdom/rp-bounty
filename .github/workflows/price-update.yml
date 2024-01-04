@@ -24,6 +24,7 @@ jobs:
           responseFile: _data/price-responses/rpl-usd.json
           
       - name: Create Pull Request
+        id: create-pr
         uses: peter-evans/create-pull-request@v5
         with: 
           commit-message: "Automated update of source data via github action"
@@ -32,3 +33,10 @@ jobs:
           delete-branch: true
           title: 'Update Source Data'
           body: "Automated update of source data via github action. Includes add and remove of bounties, update of docs files and RPL-USD price update."
+  
+      - name: Merge Pull Request
+        uses: juliangruber/merge-pull-request-action@v1.2.0
+        with:
+          github-token: ${{ secrets.PAT }}
+          number: ${{ steps.create-pr.outputs.pull-request-number }}"
+          
