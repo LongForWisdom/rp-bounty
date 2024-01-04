@@ -1,4 +1,4 @@
-name: data-update
+name: price-update
 on: 
   workflow_dispatch:
   schedule: 
@@ -7,7 +7,7 @@ on:
 jobs:
   get_rss: 
     runs-on: ubuntu-latest
-    name: Update All Data
+    name: Update Price Data
     steps: 
       - name: Checkout
         uses: actions/checkout@v4.1.1  
