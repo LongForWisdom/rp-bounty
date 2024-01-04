@@ -45,4 +45,4 @@ jobs:
           branch: temp-data-updates
           delete-branch: true
           title: 'Update Source Data'
-          body: "Automated update of source data via github action. Includes add and remove of bounties, update of docs files and RPL-USD price update."
+          body: "Automated update of source data via github action. Includes add and remove of bounties and update of docs files."
