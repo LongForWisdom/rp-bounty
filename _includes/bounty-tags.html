@@ -4,24 +4,27 @@
     <p> {{bounty.code}} </p>
   </div>
   <div class="bounty-tag flex-stack-left">
-  {% if bounty.status=="open" %}
+  {% if bounty.status =="open" %}
     <div class="bounty-tag-status-open"></div>
-  {% endif %}
-  {% if bounty.status=="closed" %}
+  {% elsif bounty.status =="closed" %}
     <div class="bounty-tag-status-closed"></div>
+  {% elsif bounty.status =="draft" %}
+    <div class="bounty-tag-status-draft"></div>
+  {% else %}
+    <div class="bounty-tag-status-default"></div>
   {% endif %}
-    <p> {{bounty.status}} </p>
+    <p> {{bounty.status | downcase}} </p>
   </div>
   {% for skillset in include.bounty.skillsets %}
     <div class="bounty-tag flex-stack-left">
       <div class="bounty-tag-skillset"></div>
-      <p> {{skillset}} </p>
+      <p> {{skillset | downcase}} </p>
     </div>
   {% endfor %}
   {% for tag in include.bounty.tags %}
     <div class="bounty-tag flex-stack-left">
       <div class="bounty-tag-tag"></div>
-      <p> {{tag}} </p>
+      <p> {{tag | downcase}} </p>
     </div>
   {% endfor %}
 </div>
