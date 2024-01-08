@@ -23,6 +23,7 @@
   grid-template-columns: 
   max-content auto; 
   margin: 0px 8px 8px 0px;
+  font-size: 0.9rem;
 }
 
 .site-footer {
@@ -32,6 +33,11 @@
 
 dt {
   margin: 0px 24px 0px 0px;
+
+  img {
+    margin-right: 5px;
+  }
+  
 }
 
 .site-nav {
@@ -58,4 +64,13 @@ h3 {
 .unconverted-price {
   margin-bottom: 0px;
   text-align: right;
+}
+
+a.page-link:hover {
+  text-decoration: none;
+  color: #2a799f;
+}
+
+.site-title:hover {
+  text-decoration: none;
 }

@@ -1,8 +1,9 @@
 
 .bounty-tag-container {
-  height: 24px;
+  flex-flow: row wrap;
 }
 
 .bounty-filter {
   margin-bottom: 12px;
+  flex-direction: column;
 }

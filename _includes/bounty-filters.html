@@ -1,4 +1,5 @@
 {% assign filters = '' | split: '' %}
+<div class="filter-title">Status</div>
       {% for bounty in bounties %}
           {% assign filter = "status:" | append: bounty.status%}
           {% assign filters = filters | push: filter %}
@@ -11,7 +12,7 @@
         {% include filter-item.html filter=filter%}
       {%- endfor -%}
       </div>
-      
+      <div class="filter-title">Skills</div>
       {% assign filters = '' | split: '' %}
       {% for bounty in bounties %}
         {% for skillset in bounty.skillsets %}
@@ -27,7 +28,7 @@
         {% include filter-item.html filter=filter%}
       {%- endfor -%}
       </div>
-      
+      <div class="filter-title">Tags</div>
       {% assign filters = '' | split: '' %}
       {% for bounty in bounties %}
         {% for tag in bounty.tags %}
