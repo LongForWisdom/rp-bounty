@@ -1,25 +1,43 @@
 
-$border-radius: 12px;
-$tag-border-radius: 6px;
+$border-radius: 4px;
 
+@media only screen and (min-width: 600px) {
+.bounty-wrap {
+  display: flex;
+  flex-flow: row wrap;
+  flex-wrap: nowrap;
+}
 
+.filter-container {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(99.9% * 3/12 - (12px - 12px * 3/12));
+  max-width: calc(99.9% * 3/12 - (12px - 12px * 3/12));
+  width: calc(99.9% * 3/12 - (12px - 12px * 3/12));
+}
+}
 
 .bounty-item-container {
-  background-color: $background-color;
+  background-color: #fff;
   border-radius: $border-radius;
-  border: 1px solid $border-color;
+  border: 1.5px solid $border-color;
   margin-top: 10px;
   margin-bottom: 10px;
+  padding: 18px 24px 24px;
+
+  a {
+    color: #1756a9;
+
+    &:hover {
+      color: #333;
+      text-decoration: none;
+    }
+
+  }
 }
 
 .bounty-item-container p {
   margin-bottom: 0px;
-}
-
-.bounty-item-head {
-  background-color: $header-background-color;
-  border-radius: $border-radius $border-radius 0px 0px;
-  padding: 8px;
 }
 
 .bounty-item-head {
@@ -34,12 +52,12 @@ $tag-border-radius: 6px;
 }
 
 .bounty-tag {
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-right: 8px;
+  margin-bottom: 8px;
   background-color: $tag-background-color;
   color: $tag-text-color;
   font-weight: 400;
-  border-radius: $tag-border-radius;
+  border-radius: $border-radius;
 }
 
 .bounty-tag:first-child {
@@ -49,7 +67,7 @@ $tag-border-radius: 6px;
 .bounty-tag-flare {
   width: 6px;
   height: 100%;
-  border-radius: $tag-border-radius 0px 0px $tag-border-radius;
+  border-radius: $border-radius 0px 0px $border-radius;
 }
 
 .bounty-tag-skillset
@@ -97,10 +115,6 @@ $tag-border-radius: 6px;
 .bounty-tag p {
   padding: 0px 8px;
   margin: 0px
-}
-
-.bounty-item-content {
-  padding: 8px;
 }
 
 .bounty-item-anim-hide {
