@@ -37,7 +37,7 @@ title: Bounty Feed
 
 <!-- Actually render stuff for each date. -->
 {% for date in display_dates %}
-  <!-- Data header --> 
+  <!-- Date header --> 
   <h3>{{date | date_to_string: "ordinal", "US"}}</h3>
   <!-- GMC Posts --> 
   {% for post in raw_gmc_posts %}
