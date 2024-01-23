@@ -29,6 +29,18 @@
 .site-footer {
   background-color: $header-background-color;
   border-top: 1px solid $border-color;
+  padding: 8px;
+}
+
+.footer-heading {
+  @include relative-font-size(1.125);
+  margin-bottom: 0px;
+}
+
+.footer-link {
+  margin-left: 6px;
+  margin-right: 6px;
+  margin-bottom: 12px;
 }
 
 dt {

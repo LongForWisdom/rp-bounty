@@ -13,18 +13,18 @@
   {% else %}
     <div class="bounty-tag-status-default"></div>
   {% endif %}
-    <p> {{bounty.status | downcase}} </p>
+    <p data-format="tag"> {{bounty.status}} </p>
   </div>
   {% for skillset in include.bounty.skillsets %}
     <div class="bounty-tag flex-stack-left">
       <div class="bounty-tag-skillset"></div>
-      <p> {{skillset | downcase}} </p>
+      <p data-format="tag"> {{skillset}} </p>
     </div>
   {% endfor %}
   {% for tag in include.bounty.tags %}
     <div class="bounty-tag flex-stack-left">
       <div class="bounty-tag-tag"></div>
-      <p> {{tag | downcase}} </p>
+      <p data-format="tag"> {{tag}} </p>
     </div>
   {% endfor %}
 </div>

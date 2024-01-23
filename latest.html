@@ -1,24 +1,65 @@
 ---
 layout: page
-nav-title: Latest
-title: Latest GMC Posts
+nav-title: News
+title: Bounty Feed
 ---
 
-{% assign num = 20 %}
-{% for i in (1..num) %}
-  {% assign roundNumber = num | plus: 1 | minus: i %}
-  {% assign roundTitle = 'Round ' | append:roundNumber %}
-  {% assign round_posts=site.data.gmc-rss | where_exp:"item", "item.title contains roundTitle" %}
 
-  {% if round_posts.size != 0 %}
-    {% assign roundDiscuss=round_posts | where_exp:"item", "item.title contains 'Community Discussion'" %}
-    {% assign roundResult=round_posts | where_exp:"item", "item.title contains 'Results'" %}
-    {% assign roundBounty=round_posts | where_exp:"item", "item.title contains 'Bounty Applications'" %}
+{% assign raw_gmc_posts=site.data.gmc-rss | where_exp: "item", "item.title contains 'Round'" %}
+{% assign raw_bounties=site.pages | where:"layout", "bounty" %}
 
-    <h3>{{roundTitle}}</h3>
-    {% if roundResult.size > 0%}<span><a href="{{roundResult[0].link}}">Results</a></span><br/>{% endif %}
-    {% if roundDiscuss.size > 0%}<span><a href="{{roundDiscuss[0].link}}">Discussion</a></span><br/>{% endif %}
-    {% if roundBounty.size > 0%}<span><a href="{{roundBounty[0].link}}">Applications</a></span><br/>{% endif %}
-    <br/>
+{% assign display_dates = '' | split: '' %}
+
+<!-- Add dates of GMC posts from rss. -->
+{% for post in raw_gmc_posts %}
+  {% assign date=post.pubDate | date_to_string: "ordinal", "US" %}
+  {% assign date=date | date_to_xmlschema %}
+  {% if post.title contains 'Community Discussion' %}
+    {% assign display_dates=display_dates | push: date %}
+  {% elsif post.title contains 'Results' %}
+    {% assign display_dates=display_dates | push: date %}
+  {% elsif post.title contains 'Bounty Applications' %}
+    {% assign display_dates=display_dates | push: date %}
   {% endif %}
+{% endfor %}
+
+<!-- Add dates of Bounties from repo. -->
+{% for bounty in raw_bounties %}
+  {% assign date=bounty.date | date_to_string: "ordinal", "US" %}
+  {% assign date=date | date_to_xmlschema %}
+  {% assign display_dates=display_dates | push: date %}
+{% endfor %}
+
+<!-- Important to make sure dates are in the same format, hence all the conversion. Format conversion also removes timestamps that would otherwise cause duplicates. Can only sort in YYYY-MM-DD format. -->
+
+<!-- Remove uniques -->
+{% assign display_dates = display_dates | uniq | sort | reverse %}
+
+<!-- Actually render stuff for each date. -->
+{% for date in display_dates %}
+  <!-- Date header --> 
+  <h3>{{date | date_to_string: "ordinal", "US"}}</h3>
+  <!-- GMC Posts --> 
+  {% for post in raw_gmc_posts %}
+    {% assign post_date=post.pubDate | date_to_string: "ordinal", "US" %}
+    {% assign post_date=post_date | date_to_xmlschema %}
+    {% if post_date == date %}
+        {% assign postTitle = post.title | truncate: 8, "" %}
+        {% if post.title contains 'Community Discussion' %}
+          <span><a href="{{post.link}}">Forum Post</a> - {{postTitle}} Proposal Discussion</span><br/>
+        {% elsif post.title contains 'Results' %}
+          <span><a href="{{post.link}}">Forum Post</a> - {{postTitle}} Grant, Retro and Bounty Results</span><br/>
+        {% elsif post.title contains 'Bounty Applications' %}
+          <span><a href="{{post.link}}">Forum Post</a> - {{postTitle}} Call for Bounty Proposals</span><br/>
+        {% endif %}
+    {% endif %}
+  {% endfor %}
+  <!-- Bounties --> 
+  {% for bounty in raw_bounties %}
+    {% assign bounty_date=bounty.date | date_to_string: "ordinal", "US" %}
+    {% assign bounty_date=bounty_date | date_to_xmlschema %}
+    {% if bounty_date == date %}
+      <span><a href="{{bounty.url|relative_url}}">Bounty Added</a> - {{bounty.title}}</span><br/>
+    {% endif %}
+  {% endfor %}
 {% endfor %}
