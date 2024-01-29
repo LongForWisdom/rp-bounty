@@ -71,11 +71,13 @@ h3 {
   margin: 0px 0px 0px 0px;
   line-height: 1;
   text-align: right;
+  text-wrap: nowrap;
 }
 
 .unconverted-price {
-  margin-bottom: 0px;
+  margin-bottom: -6px;
   text-align: right;
+  text-wrap: nowrap;
 }
 
 a.page-link:hover {

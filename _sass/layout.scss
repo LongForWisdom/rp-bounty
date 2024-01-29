@@ -4,6 +4,10 @@
   justify-content: space-between;
 }
 
+.layout-stretch {
+  width: 100%;
+}
+
 .flex-justify-v {
   display: flex; 
   justify-content: space-between;
@@ -50,6 +54,17 @@
   align-items: flex-start;
 }
 
+.flex-align-end {
+  align-items: flex-end;
+}
+
 .flex-separator-v {
   margin: 0px 0px 8px 0px;
+}
+
+.exclusion-dummy {
+  visibility: hidden;  
+  @include media-query($on-palm) {
+    display: none;
+ }
 }

@@ -10,10 +10,10 @@ nav-title: Bounties
 
 
 <!-- Header -->
-<div class="bounty-wrap">
+<div class="bounty-wrap layout-stretch">
   <header class="filter-container">
     <div class="flex-stack-top flex-align-left">
-      <div class="sort-search-container">
+      <div class="sort-search-container flex-stack-top">
         <input class="margin-search" type="text" placeholder="Search.." id="search-input" onkeyup="filterBounties()"/>
         <div class="dropdown-backing flex-stack-left">
           <button id="sort-button" onclick="toggleClass('sort-dropdown', 'dropdown-content-show')" data-sort="date-desc"></button>
@@ -25,11 +25,12 @@ nav-title: Bounties
 
   {% include bounty-filters.html %}
   </header>
-
-  <div id="bounty-list">  
+  <div class="flex-stack-top layout-stretch">
     <span id=filter-count class="filter-count">Test</span>
-    {% for bounty in bounties %}
-      {% include bounty-item.html bounty=bounty %}
-    {% endfor %}
+    <div id="bounty-list" class="layout-stretch">  
+      {% for bounty in bounties %}
+        {% include bounty-item.html bounty=bounty %}
+      {% endfor %}
+    </div>
   </div>
 </div> <!-- End bounty wrap -->

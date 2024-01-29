@@ -204,7 +204,7 @@ function filterBounties() {
   
   
   let counter = document.getElementById("filter-count");
-  counter.textContent = acc + " matching bounties";
+  counter.textContent = "Found " + acc + " matching bounties";
   
 }
 

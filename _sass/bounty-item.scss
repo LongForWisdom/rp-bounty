@@ -1,11 +1,16 @@
 
-$border-radius: 4px;
+$item-border-radius: 0px;
+$tag-border-radius: 4px;
 
 @media only screen and (min-width: 600px) {
 .bounty-wrap {
   display: flex;
   flex-flow: row wrap;
   flex-wrap: nowrap;
+}
+
+.bounty-wrap {
+  width: 100%;
 }
 
 .filter-container {
@@ -19,8 +24,10 @@ $border-radius: 4px;
 
 .bounty-item-container {
   background-color: #fff;
-  border-radius: $border-radius;
+  border-radius: $item-border-radius;
   border: 1.5px solid $border-color;
+  position: relative;
+
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 18px 24px 24px;
@@ -38,6 +45,7 @@ $border-radius: 4px;
 
 .bounty-item-container p {
   margin-bottom: 0px;
+  width: 100%;
 }
 
 .bounty-item-head {
@@ -47,7 +55,7 @@ $border-radius: 4px;
 
 .bounty-item-foot {
   background-color: $background-color;
-  border-radius: 0px 0px $border-radius $border-radius;
+  border-radius: 0px 0px $item-border-radius $item-border-radius;
   padding: 8px;
 }
 
@@ -57,7 +65,8 @@ $border-radius: 4px;
   background-color: $tag-background-color;
   color: $tag-text-color;
   font-weight: 400;
-  border-radius: $border-radius;
+  border-radius: $tag-border-radius;
+  text-wrap: nowrap;
 }
 
 .bounty-tag:first-child {
@@ -67,7 +76,7 @@ $border-radius: 4px;
 .bounty-tag-flare {
   width: 6px;
   height: 100%;
-  border-radius: $border-radius 0px 0px $border-radius;
+  border-radius: $tag-border-radius 0px 0px $tag-border-radius;
 }
 
 .bounty-tag-skillset
@@ -94,6 +103,17 @@ $border-radius: 4px;
   background-color: $status-open-col;
 }
 
+// Experimenting with corners for status
+// .bounty-item-container:before {
+//   content: '';
+//   position: absolute;
+//   top: 0; left: 0;
+//   border-top: 50px solid red;
+//   border-top-left-radius: $border-radius;
+//   border-right: 50px solid rgba(255, 255, 255, 0);
+//   width: 0;
+// }
+
 .bounty-tag-status-closed
 {
   @extend .bounty-tag-flare;
@@ -119,4 +139,13 @@ $border-radius: 4px;
 
 .bounty-item-anim-hide {
   display: none;
+}
+
+.bounty-date {
+  text-wrap: nowrap;
+}
+
+.price-container {
+  height: 55px;
+  margin-bottom: -20px;
 }

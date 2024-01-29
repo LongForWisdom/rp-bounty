@@ -22,7 +22,7 @@ layout: default
     </div>
     <div class="flex-justify">
       {% assign bounty = page %}
-      {% include bounty-tags.html bounty=page %}
+      {% include bounty-tags.html bounty=page show-code=true %}
       <b>{{page.date | date_to_string: "ordinal", "US"}}</b>
     </div>
   </header>

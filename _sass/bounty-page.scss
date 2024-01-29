@@ -1,9 +1,12 @@
 
 .bounty-tag-container {
   flex-flow: row wrap;
+  width: 100%;
+  @include media-query($on-palm) {
+      margin-top: 24px;
+   }
 }
 
-.bounty-filter {
-  margin-bottom: 12px;
-  flex-direction: column;
+#bounty-list {
+  width: 100%;
 }
