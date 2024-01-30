@@ -24,53 +24,108 @@
 
 .dropdown-backing {
   position: relative;
+  width: 160px;
 }
 
 .dropdown-content {
   @extend .flex-stack-top;
   display: none;
   position: absolute;
-  min-width: 100%;
+  width: 158px;
   right: 0px;
   z-index: 1;
-  top: 21px;
+  top: 24px;
 }
 
 .dropdown-content-show {
   display: flex;
+  background: rgb(255, 255, 255);
+  border-radius: $item-border-radius;
+  border-width: 1px;
+  border-bottom-width: 0px;
+  border-color: $border-color;
+  border-style: solid;
 }
 
 .sort-dropdown-button { //dynamically applied to sort dropdown buttons
-  margin: 2px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  background: none;
+  border-radius: $item-border-radius;
+  border-width: 0px;
+  border-bottom-width: 1px;
+  border-color: $border-color;
+  border-style: solid;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.sort-dropdown-button:hover {
+  background-color: $select-color;
+}
+
+.margin-search-container {
+  margin: 26px 0px 0px 0px;
+  background: rgb(255, 255, 255);
+  border-radius: $item-border-radius;
+  border-width: 1px;
+  border-color: $border-color;
+  border-style: solid;
+  margin-bottom: 12px;
+  padding: 4px 8px;
+  max-width: 160px;
 }
 
 .margin-search {
-  margin: 26px 0px 0px 0px;
-  max-width: 160px;
+  font-weight: 400;
+  box-sizing: border-box;
+  cursor: text;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+  background: rgb(255, 255, 255);
+  border-radius: $item-border-radius;
+  border-width: 0px;
+  border-color: $border-color;
+  border-style: solid;
+  width: 100%;
+}
+
+.margin-search:focus-visible {
+  outline: 0px;
+  outline-offset: 0px;
 }
 
 #filter-count {
   margin-bottom: -8px;
 }
 
-#sort-button, .margin-search {
+#sort-button {
   font-weight: 400;
   box-sizing: border-box;
   cursor: text;
   display: inline-flex;
   -webkit-box-align: center;
   align-items: center;
-  background: rgb(255, 255, 255);
   position: relative;
-  border-radius: $item-border-radius;
   padding: 4px 8px;
   margin-bottom: 12px;
+  background: rgb(255, 255, 255);
+  border-radius: $item-border-radius;
   border-width: 1px;
   border-color: $border-color;
   border-style: solid;
+  cursor: pointer;
 }
 
 #sort-button {
-  width: 160px;
+  width: 100%;
   align-content: center;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -.125em;
+  color: $border-color;
+  filter: invert(85%) sepia(0%) saturate(39%) hue-rotate(142deg) brightness(106%) contrast(90%);
 }

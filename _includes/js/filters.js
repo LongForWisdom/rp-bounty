@@ -227,10 +227,11 @@ function sortBounties()
   let elements = document.getElementsByClassName("bounty-item-container");
   let parent = document.getElementById("bounty-list");
   let sortDisplay = document.getElementById("sort-button");
+  let sortDisplayText = document.getElementById("sort-button-text");
   let elementArray = Array.from(elements);
   let sortType = sortDisplay.dataset.sort;
   
   let sorted = elementArray.sort(sorts[sortType].comparator);
   sorted.forEach((item) => { parent.appendChild(item);});
-  sortDisplay.textContent = "Sort By: " + sorts[sortType].displayName;
+  sortDisplayText.textContent = "Sort By: " + sorts[sortType].displayName;
 }

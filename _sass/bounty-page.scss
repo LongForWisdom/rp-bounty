@@ -10,3 +10,13 @@
 #bounty-list {
   width: 100%;
 }
+
+.wrapper-bounty {
+  @extend .wrapper;
+  background-color: white;
+  padding-top: 24px !important;
+  padding-bottom: 16px;
+  margin-top: -16px;
+  margin-bottom: -16px;
+  min-height: 81vh;
+}

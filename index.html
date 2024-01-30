@@ -14,9 +14,15 @@ nav-title: Bounties
   <header class="filter-container">
     <div class="flex-stack-top flex-align-left">
       <div class="sort-search-container flex-stack-top">
-        <input class="margin-search" type="text" placeholder="Search.." id="search-input" onkeyup="filterBounties()"/>
+        <div class="flex-stack-left margin-search-container">
+          <input class="margin-search" type="text" placeholder="Search.." id="search-input" onkeyup="filterBounties()" />
+          <img src="assets/magnifying-glass-solid.svg" class="icon"/>
+        </div>
         <div class="dropdown-backing flex-stack-left">
-          <button id="sort-button" onclick="toggleClass('sort-dropdown', 'dropdown-content-show')" data-sort="date-desc"></button>
+            <button id="sort-button" class="flex-justify" onclick="toggleClass('sort-dropdown', 'dropdown-content-show')" data-sort="date-desc">
+              <span id="sort-button-text"></span> <!-- Dynamically Filled -->
+              <img src="assets/caret-down-solid.svg" class="icon"/>
+            </button>
           <div id="sort-dropdown" class="dropdown-content"> <!-- dynamically filled from JS sorts. Classes: sort-dropdown-button -->
           </div>
         </div>
