@@ -63,6 +63,36 @@ h3 {
   vertical-align: top;
 }
 
+h2 {
+  margin-bottom: 0px;
+}
+
+p + h2, ul + h2 {
+  margin-top: 12px;
+}
+
+p {
+  margin-bottom: 15px;
+  margin-left: 2px;
+}
+
+ul {
+  margin-bottom: 15px;
+  margin-left: 34px;
+}
+
+p + p  {
+  margin-top: 2px;
+}
+
+p + ul {
+  margin-top: 4px;
+}
+
+ul + p {
+  margin-top: 12px;
+}
+
 .post-title {
   margin: 0px 0px 0px 0px;
 }
@@ -70,12 +100,6 @@ h3 {
 .converted-price {
   margin: 0px 0px 0px 0px;
   line-height: 1;
-  text-align: right;
-  text-wrap: nowrap;
-}
-
-.unconverted-price {
-  margin-bottom: -6px;
   text-align: right;
   text-wrap: nowrap;
 }

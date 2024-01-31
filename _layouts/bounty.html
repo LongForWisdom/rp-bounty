@@ -12,19 +12,20 @@ layout: default
   <article class="post">
 
     <header class="post-header">
-      <div class="flex-justify">
+      <div class="flex-justify headline-spacing">
         <h1 class="post-title"> {{ page.title | escape }} </h1>
-        <div class="flex-stack-top"> 
-          <h1 class="post-title unconverted-price">{% include bounty-amount.html reward=page.reward%}</h1>
-          {% if page.reward.unit == "RPL" %}
-          <h3 class="converted-price">{% include bounty-amount.html reward=page.reward convert="RPL"%}</h3>
-          {% endif %}
-        </div>
+          <div class="flex-stack-top flex-align-end price-container-page">
+            <h1 class="post-title unconverted-price-page">{% include bounty-amount.html reward=page.reward %}</h1>
+            {% if page.reward.unit == "RPL" %}
+            <h3 class="converted-price">{% include bounty-amount.html reward=page.reward convert="RPL"%}</h3>
+            {% endif %}
+            <b class="bounty-date"> {{page.date | date_to_string: "ordinal", "US"}} </b>
+          </div>
       </div>
       <div class="flex-justify">
         {% assign bounty = page %}
         {% include bounty-tags.html bounty=page show-code=true %}
-        <b>{{page.date | date_to_string: "ordinal", "US"}}</b>
+        <b class="bounty-date exclusion-dummy">{{page.date | date_to_string: "ordinal", "US"}}</b>
       </div>
     </header>
   

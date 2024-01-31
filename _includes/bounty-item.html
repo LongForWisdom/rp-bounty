@@ -5,7 +5,7 @@
       <div class="flex-justify flex-align-top flex-separator-v">
         <a href="{{bounty.url|relative_url}}"><h3> {{include.bounty.title}} </h3></a>
         <div class="flex-stack-top flex-align-end price-container">
-          <h3 class="unconverted-price">{% include bounty-amount.html reward=bounty.reward %}</h3>
+          <h3 class="unconverted-price-item">{% include bounty-amount.html reward=bounty.reward %}</h3>
           {% if bounty.reward.unit == "RPL" %}
           <h5 class="converted-price">{% include bounty-amount.html reward=bounty.reward convert="RPL"%}</h5>
           {% endif %}

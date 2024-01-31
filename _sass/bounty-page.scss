@@ -14,9 +14,28 @@
 .wrapper-bounty {
   @extend .wrapper;
   background-color: white;
+  border-left: solid 1px $border-color;
+  border-right: solid 1px $border-color;
   padding-top: 24px !important;
   padding-bottom: 16px;
   margin-top: -16px;
   margin-bottom: -16px;
   min-height: 81vh;
+  align-content: center;
+}
+
+.price-container-page {
+  height: 65px;
+  margin-bottom: -12px;
+}
+
+.unconverted-price-page {
+  margin-bottom: 0px;
+  text-align: right;
+  text-wrap: nowrap;
+}
+
+.headline-spacing {
+  margin-top: 4px;
+  margin-bottom: 12px;
 }
