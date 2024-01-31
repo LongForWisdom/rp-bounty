@@ -15,14 +15,14 @@
   {% elsif bounty.status =="closed" %}
     <div class="bounty-tag-status-closed">
     <img src="assets/xmark-solid.svg" class="tag-icon"/>
-  {% elsif bounty.status =="Draft" %}
+  {% elsif bounty.status =="draft" %}
     <div class="bounty-tag-status-draft">
     <img src="assets/pen-ruler-solid.svg" class="tag-icon icon-adjust-smaller icon-adjust-up icon-adjust-left"/>
   {% else %}
     <div class="bounty-tag-status-default">
   {% endif %}
        <div class="bounty-tag-hole"></div>
-        </div>
+    </div>
     <p data-format="tag">{{bounty.status}}</p>
   </div>
   {% for skillset in include.bounty.skillsets %}
