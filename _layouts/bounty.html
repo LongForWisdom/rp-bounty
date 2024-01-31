@@ -8,46 +8,49 @@ layout: default
   }
 </style>
 
-<article class="post">
+<div class="wrapper-bounty">
+  <article class="post">
 
-  <header class="post-header">
-    <div class="flex-justify">
-      <h1 class="post-title"> {{ page.title | escape }} </h1>
-      <div class="flex-stack-top"> 
-        <h1 class="post-title unconverted-price">{% include bounty-amount.html reward=page.reward%}</h1>
-        {% if page.reward.unit == "RPL" %}
-        <h3 class="converted-price">{% include bounty-amount.html reward=page.reward convert="RPL"%}</h3>
-        {% endif %}
+    <header class="post-header">
+      <div class="flex-justify headline-spacing">
+        <h1 class="post-title"> {{ page.title | escape }} </h1>
+          <div class="flex-stack-top flex-align-end price-container-page">
+            <h1 class="post-title unconverted-price-page">{% include bounty-amount.html reward=page.reward %}</h1>
+            {% if page.reward.unit == "RPL" %}
+            <h3 class="converted-price">{% include bounty-amount.html reward=page.reward convert="RPL"%}</h3>
+            {% endif %}
+            <b class="bounty-date"> {{page.date | date_to_string: "ordinal", "US"}} </b>
+          </div>
       </div>
+      <div class="flex-justify">
+        {% assign bounty = page %}
+        {% include bounty-tags.html bounty=page show-code=true %}
+        <b class="bounty-date exclusion-dummy">{{page.date | date_to_string: "ordinal", "US"}}</b>
+      </div>
+    </header>
+  
+    <div class="post-content">
+      {{ content }}
+      {% if page.contacts %}
+      {% assign contactsData = site.data.contacts.contacts %}
+      {% assign contactMeta = site.data.contacts.meta %}
+      <div>
+        <h2>Contacts</h2>
+        {% for contact in page.contacts %}
+          {% assign contactData = contactsData | where: 'name', contact | first %}
+          {% if contactData %}
+            <b>{{ contactData.name }}:</b>
+            {% if contactData.discord %}<a href="{{contactMeta.discord-prefix}}{{contactData.discord}}">Discord</a> {% endif %}
+            {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">Forum</a>{% endif %}
+            {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">Github</a>{% endif %}
+            </br>
+          {% else %}
+            <b>{{ contact }}</b>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
-    <div class="flex-justify">
-      {% assign bounty = page %}
-      {% include bounty-tags.html bounty=page %}
-      <b>{{page.date | date_to_string: "ordinal", "US"}}</b>
-    </div>
-  </header>
+  </article>
+</div>
 
-  <div class="post-content">
-    {{ content }}
-    {% if page.contacts %}
-    {% assign contactsData = site.data.contacts.contacts %}
-    {% assign contactMeta = site.data.contacts.meta %}
-    <div>
-      <h2>Contacts</h2>
-      {% for contact in page.contacts %}
-        {% assign contactData = contactsData | where: 'name', contact | first %}
-        {% if contactData %}
-          <b>{{ contactData.name }}:</b>
-          {% if contactData.discord %}<a href="{{contactMeta.discord-prefix}}{{contactData.discord}}">Discord</a> {% endif %}
-          {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">Forum</a>{% endif %}
-          {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">Github</a>{% endif %}
-          </br>
-        {% else %}
-          <b>{{ contact }}</b>
-        {% endif %}
-      {% endfor %}
-    </div>
-    {% endif %}
-  </div>
-
-</article>
