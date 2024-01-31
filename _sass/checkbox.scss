@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-.bounty-filter > div [type=checkbox].substituted:hover {
-    cursor: pointer;
-}
-
 .bounty-filter > div [type=checkbox].substituted {
   margin: 0 0px 0;
   width: 0;
@@ -43,24 +39,15 @@
   }
 
 .bounty-filter > div [type=checkbox].substituted:checked + label:before {
-  background-color: #3B99FC;
+  background-color: $select-color;
   background-size: 0.75em;
   color: rgba(0, 0, 0, 0.075);
 }
 
 .bounty-filter > div [type=checkbox].substituted:checked:enabled:active + label:before,
 .bounty-filter > div [type=checkbox].substituted:checked:enabled + label:active:before {
-  background-color: #0a7ffb;
+  background-color: $select-color;
   color: rgba(0, 0, 0, 0.275);
-}
-
-.bounty-filter > div [type=checkbox].substituted:focus + label:before {
-  box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em transparent inset, 0 0 0 0.07em rgba(0, 0, 0, 0.1) inset, 0 0 0 3.3px rgba(65, 159, 255, 0.55), 0 0 0 5px rgba(65, 159, 255, 0.3);
-}
-
-.bounty-filter > div [type=checkbox].substituted:focus:active + label:before,
-.bounty-filter > div [type=checkbox].substituted:focus + label:active:before {
-  box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em transparent inset, 0 0 0 0.07em rgba(0, 0, 0, 0.1) inset, 0 0 0 3.3px rgba(65, 159, 255, 0.55), 0 0 0 5px rgba(65, 159, 255, 0.3);
 }
 
 .bounty-filter > div [type=checkbox].substituted:disabled + label:before {

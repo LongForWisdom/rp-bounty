@@ -1,6 +1,6 @@
 
 $item-border-radius: 0px;
-$tag-border-radius: 4px;
+$tag-border-radius: 16px;
 
 @media only screen and (min-width: 600px) {
 .bounty-wrap {
@@ -23,7 +23,7 @@ $tag-border-radius: 4px;
 }
 
 .bounty-item-container {
-  background-color: #fff;
+  background-color: $item-background-color;
   border-radius: $item-border-radius;
   border: 1.5px solid $border-color;
   position: relative;
@@ -31,16 +31,6 @@ $tag-border-radius: 4px;
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 18px 24px 24px;
-
-  a {
-    color: #1756a9;
-
-    &:hover {
-      color: #333;
-      text-decoration: none;
-    }
-
-  }
 }
 
 .bounty-item-container p {
@@ -74,9 +64,22 @@ $tag-border-radius: 4px;
 }
 
 .bounty-tag-flare {
-  width: 6px;
+  width: 24px;
+  min-width: 24px;
   height: 100%;
-  border-radius: $tag-border-radius 0px 0px $tag-border-radius;
+  border-radius: $tag-border-radius $tag-border-radius $tag-border-radius $tag-border-radius;
+  margin-right: -4px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.bounty-tag-hole {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0);
+  display: none;
 }
 
 .bounty-tag-skillset
@@ -101,6 +104,40 @@ $tag-border-radius: 4px;
 {
   @extend .bounty-tag-flare;
   background-color: $status-open-col;
+}
+
+.tag-icon
+{
+  width: 1em;
+  height: 1em;
+  color: black;
+  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(142deg) brightness(150%) contrast(100%);
+}
+
+.icon-adjust-down
+{
+  margin-top: 1px;
+}
+
+.icon-adjust-up
+{
+  margin-bottom: 1px;
+}
+
+.icon-adjust-right
+{
+  margin-left: 2px;
+}
+
+.icon-adjust-left
+{
+  margin-right: 2px;
+}
+
+.icon-adjust-smaller
+{
+  width: 0.9em;
+  height: 0.9em;
 }
 
 // Experimenting with corners for status

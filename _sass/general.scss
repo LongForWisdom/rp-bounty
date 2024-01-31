@@ -67,10 +67,6 @@ h2 {
   margin-bottom: 0px;
 }
 
-p + h2, ul + h2 {
-  margin-top: 12px;
-}
-
 p {
   margin-bottom: 15px;
   margin-left: 2px;
@@ -79,6 +75,10 @@ p {
 ul {
   margin-bottom: 15px;
   margin-left: 34px;
+}
+
+p + h2, ul + h2 {
+  margin-top: 12px;
 }
 
 p + p  {
@@ -111,4 +111,16 @@ a.page-link:hover {
 
 .site-title:hover {
   text-decoration: none;
+}
+
+a {
+  color: $select-color;
+  &:visited {
+    color: $select-color;
+  }
+
+  &:hover {
+    color: $hover-color;
+    text-decoration: none;
+  }
 }

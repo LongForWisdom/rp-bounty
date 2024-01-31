@@ -95,7 +95,8 @@ function formatTags()
     splitArray.forEach(function(word)
     {
       word = word.trim();
-      formattedTag = formattedTag.concat(word[0].toUpperCase(), word.slice(1), ' ');
+      formattedTag = formattedTag.concat(word[0].toUpperCase(), word.slice(1));
+      if(word != splitArray[splitArray.length-1]) {formattedTag = formattedTag.concat(' ');}
     });
     element.innerHTML = formattedTag;
   });
