@@ -27,14 +27,6 @@ jobs:
           source: .github/feeds.yaml
           target: _data/gmc-rss.json
           
-      - name: Get RPL Price
-        continue-on-error: true
-        uses: fjogeleit/http-request-action@v1.14.2
-        with: 
-          url: "https://optimism-mainnet.infura.io/v3/${{ secrets.INFURA }}"
-          data: '{"jsonrpc": "2.0", "id": 1, "method": "eth_call", "params": [{"to":"0xADE082c91A6AeCC86fC11704a830e933e1b382eA","data":"0x50d25bcd"}, "latest"]}'
-          responseFile: _data/price-responses/rpl-usd.json
-          
       - name: Copy Source Data
         continue-on-error: true
         run: |
@@ -53,4 +45,4 @@ jobs:
           branch: temp-data-updates
           delete-branch: true
           title: 'Update Source Data'
-          body: "Automated update of source data via github action. Includes add and remove of bounties, update of docs files and RPL-USD price update."
+          body: "Automated update of source data via github action. Includes add and remove of bounties and update of docs files."

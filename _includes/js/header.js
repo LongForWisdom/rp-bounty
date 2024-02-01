@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
   setRelativeTimeString(dates.nextGMCPayout - Date.now(), "bounty-payout");
   setRelativeTimeString(dates.nextBountyCutoff - Date.now(), "bounty-cutoff");
   formatRewards();
+  formatTags();
 });
 
 function getDates()
@@ -80,5 +81,23 @@ function formatRewards()
       element.dataset.rewardvalue = element.dataset.rewardvalue * RPLprice;
     }
     element.innerHTML = useformat.format(element.dataset.rewardvalue);
+  });
+}
+
+function formatTags()
+{
+  let elements = Array.from(document.querySelectorAll('[data-format="tag"]'));
+  elements.forEach(function(element)
+  {
+    let unformattedTag = element.innerHTML;
+    let formattedTag = "";
+    let splitArray = unformattedTag.split('-');
+    splitArray.forEach(function(word)
+    {
+      word = word.trim();
+      formattedTag = formattedTag.concat(word[0].toUpperCase(), word.slice(1));
+      if(word != splitArray[splitArray.length-1]) {formattedTag = formattedTag.concat(' ');}
+    });
+    element.innerHTML = formattedTag;
   });
 }

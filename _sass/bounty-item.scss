@@ -1,29 +1,41 @@
 
-$border-radius: 12px;
-$tag-border-radius: 6px;
-$skillset-col: blue;
-$tag-col: gold;
-$status-open-col: Chartreuse;
-$status-closed-col: red;
-$code-col: black;
+$item-border-radius: 0px;
+$tag-border-radius: 16px;
 
+@media only screen and (min-width: 600px) {
+.bounty-wrap {
+  display: flex;
+  flex-flow: row wrap;
+  flex-wrap: nowrap;
+}
+
+.bounty-wrap {
+  width: 100%;
+}
+
+.filter-container {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(99.9% * 3/12 - (12px - 12px * 3/12));
+  max-width: calc(99.9% * 3/12 - (12px - 12px * 3/12));
+  width: calc(99.9% * 3/12 - (12px - 12px * 3/12));
+}
+}
 
 .bounty-item-container {
-  background-color: #DDDDDD;
-  border-radius: $border-radius;
-  border: 1px solid #FFFFFF;
+  background-color: $item-background-color;
+  border-radius: $item-border-radius;
+  border: 1.5px solid $border-color;
+  position: relative;
+
   margin-top: 10px;
   margin-bottom: 10px;
+  padding: 18px 24px 24px;
 }
 
 .bounty-item-container p {
   margin-bottom: 0px;
-}
-
-.bounty-item-head {
-  background-color: #EEEEEE;
-  border-radius: $border-radius $border-radius 0px 0px;
-  padding: 8px;
+  width: 100%;
 }
 
 .bounty-item-head {
@@ -32,16 +44,19 @@ $code-col: black;
 }
 
 .bounty-item-foot {
-  background-color: #DDDDDD;
-  border-radius: 0px 0px $border-radius $border-radius;
+  background-color: $background-color;
+  border-radius: 0px 0px $item-border-radius $item-border-radius;
   padding: 8px;
 }
 
 .bounty-tag {
-  margin-left: 4px;
-  margin-right: 4px;
-  background-color: #DDDDDD;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  background-color: $tag-background-color;
+  color: $tag-text-color;
+  font-weight: 400;
   border-radius: $tag-border-radius;
+  text-wrap: nowrap;
 }
 
 .bounty-tag:first-child {
@@ -49,9 +64,22 @@ $code-col: black;
 }
 
 .bounty-tag-flare {
-  width: 6px;
+  width: 24px;
+  min-width: 24px;
   height: 100%;
-  border-radius: $tag-border-radius 0px 0px $tag-border-radius;
+  border-radius: $tag-border-radius $tag-border-radius $tag-border-radius $tag-border-radius;
+  margin-right: -4px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.bounty-tag-hole {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0);
+  display: none;
 }
 
 .bounty-tag-skillset
@@ -78,10 +106,67 @@ $code-col: black;
   background-color: $status-open-col;
 }
 
+.tag-icon
+{
+  width: 1em;
+  height: 1em;
+  color: black;
+  filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(142deg) brightness(150%) contrast(100%);
+}
+
+.icon-adjust-down
+{
+  margin-top: 1px;
+}
+
+.icon-adjust-up
+{
+  margin-bottom: 1px;
+}
+
+.icon-adjust-right
+{
+  margin-left: 2px;
+}
+
+.icon-adjust-left
+{
+  margin-right: 2px;
+}
+
+.icon-adjust-smaller
+{
+  width: 0.9em;
+  height: 0.9em;
+}
+
+// Experimenting with corners for status
+// .bounty-item-container:before {
+//   content: '';
+//   position: absolute;
+//   top: 0; left: 0;
+//   border-top: 50px solid red;
+//   border-top-left-radius: $border-radius;
+//   border-right: 50px solid rgba(255, 255, 255, 0);
+//   width: 0;
+// }
+
 .bounty-tag-status-closed
 {
   @extend .bounty-tag-flare;
   background-color: $status-closed-col;
+}
+
+.bounty-tag-status-draft
+{
+  @extend .bounty-tag-flare;
+  background-color: $status-draft-col;
+}
+
+.bounty-tag-status-default
+{
+  @extend .bounty-tag-flare;
+  background-color: $status-default-col;
 }
 
 .bounty-tag p {
@@ -89,10 +174,21 @@ $code-col: black;
   margin: 0px
 }
 
-.bounty-item-content {
-  padding: 8px;
-}
-
 .bounty-item-anim-hide {
   display: none;
+}
+
+.bounty-date {
+  text-wrap: nowrap;
+}
+
+.price-container {
+  height: 55px;
+  margin-bottom: -20px;
+}
+
+.unconverted-price-item {
+  margin-bottom: -6px;
+  text-align: right;
+  text-wrap: nowrap;
 }

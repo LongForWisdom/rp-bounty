@@ -10,24 +10,33 @@ nav-title: Bounties
 
 
 <!-- Header -->
-<header class="filter-container">
- {% include bounty-filters.html %}
-</header>
-
-<div class="flex-stack-top flex-align-right">
-  <div class="sort-search-container flex-stack-right">
-    <input class="margin-search" type="text" placeholder="Search.." id="search-input" onkeyup="filterBounties()"/>
-    <div class="dropdown-backing flex-stack-right">
-      <button id="sort-button" onclick="toggleClass('sort-dropdown', 'dropdown-content-show')" data-sort="date-desc"></button>
-      <div id="sort-dropdown" class="dropdown-content"> <!-- dynamically filled from JS sorts. Classes: sort-dropdown-button -->
+<div class="bounty-wrap layout-stretch">
+  <header class="filter-container">
+    <div class="flex-stack-top flex-align-left">
+      <div class="sort-search-container flex-stack-top">
+        <div class="flex-stack-left margin-search-container">
+          <input class="margin-search" type="text" placeholder="Search.." id="search-input" onkeyup="filterBounties()" />
+          <img src="assets/magnifying-glass-solid.svg" class="icon"/>
+        </div>
+        <div class="dropdown-backing flex-stack-left">
+            <button id="sort-button" class="flex-justify" onclick="toggleClass('sort-dropdown', 'dropdown-content-show')" data-sort="date-desc">
+              <span id="sort-button-text"></span> <!-- Dynamically Filled -->
+              <img src="assets/caret-down-solid.svg" class="icon"/>
+            </button>
+          <div id="sort-dropdown" class="dropdown-content"> <!-- dynamically filled from JS sorts. Classes: sort-dropdown-button -->
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <span id=filter-count class="filter-count">Test</span>
-</div>
 
-<div id="bounty-list">  
-  {% for bounty in bounties %}
-    {% include bounty-item.html bounty=bounty %}
-  {% endfor %}
-</div>
+  {% include bounty-filters.html %}
+  </header>
+  <div class="flex-stack-top layout-stretch">
+    <span id=filter-count class="filter-count">Test</span>
+    <div id="bounty-list" class="layout-stretch">  
+      {% for bounty in bounties %}
+        {% include bounty-item.html bounty=bounty %}
+      {% endfor %}
+    </div>
+  </div>
+</div> <!-- End bounty wrap -->

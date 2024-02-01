@@ -1,5 +1,5 @@
 {% assign filterPair = include.filter | split: ":" %}
 <div>
-  <input name="filter" type="checkbox" id="inlineCheckbox-{{include.filter}}" value="{{include.filter}}" onchange="filterBounties(); saveParams();" {% if include.checked==true %}checked{% endif %}>
-  <label for="inlineCheckbox-{{include.filter}}">{{filterPair[1]}}</label>
+  <input class="substituted" aria-hidden="true" name="filter" type="checkbox" id="inlineCheckbox-{{include.filter}}" value="{{include.filter}}" onchange="filterBounties(); saveParams();" {% if include.checked==true %}checked{% endif %}>
+  <label data-format="tag" for="inlineCheckbox-{{include.filter}}">{{filterPair[1]}}</label>
 </div>
