@@ -311,4 +311,13 @@
 
 
 $content-width:    1100px;
-$background-color: #EEEFF2
+$background-color: #EEEFF2;
+
+@mixin relative-font-size($ratio) {
+ font-size: $base-font-size * $ratio;
+}
+
+div.markdown-import h1  {
+ margin-left: -2px;
+ @extend .post-title;
+}

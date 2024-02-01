@@ -11,9 +11,9 @@
   width: 100%;
 }
 
-.wrapper-bounty {
+.wrapper-backed {
   @extend .wrapper;
-  background-color: white;
+  background-color: $item-background-color;
   border-left: solid 1px $border-color;
   border-right: solid 1px $border-color;
   padding-top: 24px !important;

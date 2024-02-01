@@ -37,29 +37,31 @@ title: Bounty Feed
 
 <!-- Actually render stuff for each date. -->
 {% for date in display_dates %}
-  <!-- Date header --> 
-  <h3>{{date | date_to_string: "ordinal", "US"}}</h3>
-  <!-- GMC Posts --> 
-  {% for post in raw_gmc_posts %}
-    {% assign post_date=post.pubDate | date_to_string: "ordinal", "US" %}
-    {% assign post_date=post_date | date_to_xmlschema %}
-    {% if post_date == date %}
-        {% assign postTitle = post.title | truncate: 8, "" %}
-        {% if post.title contains 'Community Discussion' %}
-          <span><a href="{{post.link}}">Forum Post</a> - {{postTitle}} Proposal Discussion</span><br/>
-        {% elsif post.title contains 'Results' %}
-          <span><a href="{{post.link}}">Forum Post</a> - {{postTitle}} Grant, Retro and Bounty Results</span><br/>
-        {% elsif post.title contains 'Bounty Applications' %}
-          <span><a href="{{post.link}}">Forum Post</a> - {{postTitle}} Call for Bounty Proposals</span><br/>
-        {% endif %}
-    {% endif %}
-  {% endfor %}
-  <!-- Bounties --> 
-  {% for bounty in raw_bounties %}
-    {% assign bounty_date=bounty.date | date_to_string: "ordinal", "US" %}
-    {% assign bounty_date=bounty_date | date_to_xmlschema %}
-    {% if bounty_date == date %}
-      <span><a href="{{bounty.url|relative_url}}">Bounty Added</a> - {{bounty.title}}</span><br/>
-    {% endif %}
-  {% endfor %}
+  <div class="feed-item-container">
+    <!-- Date header --> 
+    <h3>{{date | date_to_string: "ordinal", "US"}}</h3>
+    <!-- GMC Posts --> 
+    {% for post in raw_gmc_posts %}
+      {% assign post_date=post.pubDate | date_to_string: "ordinal", "US" %}
+      {% assign post_date=post_date | date_to_xmlschema %}
+      {% if post_date == date %}
+          {% assign postTitle = post.title | truncate: 8, "" %}
+          {% if post.title contains 'Community Discussion' %}
+            <span><a href="{{post.link}}">Forum Post</a> - {{postTitle}} Proposal Discussion</span><br/>
+          {% elsif post.title contains 'Results' %}
+            <span><a href="{{post.link}}">Forum Post</a> - {{postTitle}} Grant, Retro and Bounty Results</span><br/>
+          {% elsif post.title contains 'Bounty Applications' %}
+            <span><a href="{{post.link}}">Forum Post</a> - {{postTitle}} Call for Bounty Proposals</span><br/>
+          {% endif %}
+      {% endif %}
+    {% endfor %}
+    <!-- Bounties --> 
+    {% for bounty in raw_bounties %}
+      {% assign bounty_date=bounty.date | date_to_string: "ordinal", "US" %}
+      {% assign bounty_date=bounty_date | date_to_xmlschema %}
+      {% if bounty_date == date %}
+        <span><a href="{{bounty.url|relative_url}}">Bounty Added</a> - {{bounty.title}}</span><br/>
+      {% endif %}
+    {% endfor %}
+  </div>
 {% endfor %}

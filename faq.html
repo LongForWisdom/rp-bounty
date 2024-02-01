@@ -3,14 +3,17 @@ layout: anchored
 nav-title: FAQ
 ---
 
-{% for static_file in site.static_files %}
-  {% if static_file.path == "/docs/bounty-faq.md" %}
-    {% capture imported-content %}{% include_relative docs/bounty-faq.md %}{% endcapture %}
-    {{imported-content | markdownify}}
-    {% assign found=true %}
-  {% endif %}
-{% endfor %}
+<div class="markdown-import">
+  {% for static_file in site.static_files %}
+    {% if static_file.path == "/docs/bounty-faq.md" %}
+      {% capture imported-content %}{% include_relative docs/bounty-faq.md %}{% endcapture %}
+      {{imported-content | markdownify}}
+      {% assign found=true %}
+    {% endif %}
+  {% endfor %}
 
-{% if found!=true %}
-  <p>Couldn't find the FAQ file!</p>
-{% endif %}
+  {% if found!=true %}
+    <p>Couldn't find the FAQ file!</p>
+  {% endif %}
+</div>
+

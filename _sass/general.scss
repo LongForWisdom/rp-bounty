@@ -13,6 +13,20 @@
   padding-top: 6px;
 }
 
+.wrapper-backed {
+  @extend .wrapper;
+  background-color: $item-background-color;
+  border-left: solid 1px $border-color;
+  border-right: solid 1px $border-color;
+  padding-top: 24px !important;
+  padding-bottom: 16px;
+  margin-top: -16px;
+  margin-bottom: -16px;
+  min-height: 81vh;
+  align-content: center;
+}
+
+
 .header-logo {
   margin: 0px 8px 0px 0px;
   height: 40px;
@@ -91,10 +105,6 @@ p + ul {
 
 ul + p {
   margin-top: 12px;
-}
-
-.post-title {
-  margin: 0px 0px 0px 0px;
 }
 
 .converted-price {
