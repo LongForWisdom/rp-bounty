@@ -30,6 +30,7 @@
 .header-logo {
   margin: 0px 8px 0px 0px;
   height: 40px;
+  min-width: 40px;
 }
 
 .header-list { 
@@ -49,12 +50,17 @@
 .footer-heading {
   @include relative-font-size(1.125);
   margin-bottom: 0px;
+  text-align: center;
 }
 
 .footer-link {
   margin-left: 6px;
   margin-right: 6px;
+}
+
+.footer-link-container {
   margin-bottom: 12px;
+  justify-content: center;
 }
 
 dt {
@@ -127,6 +133,13 @@ a.page-link:hover {
   color: #2a799f;
 }
 
+.site-title {
+  line-height: 1.1em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-right: 16px;
+}
+
 .site-title:hover {
   text-decoration: none;
 }
@@ -141,4 +154,12 @@ a {
     color: $hover-color;
     text-decoration: none;
   }
+}
+
+.header-list dd {
+  text-wrap: nowrap;
+}
+
+.header-list dt {
+  text-wrap: nowrap;
 }
