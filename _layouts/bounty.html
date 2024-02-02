@@ -37,22 +37,30 @@ layout: default
       <div>
         <h2>Contacts</h2>
         {% for contact in page.contacts %}
-          {% assign contactData = contactsData | where: 'name', contact | first %}
-          {% if contactData %}
-            <b>{{ contactData.name }}:</b>
-            {% if contactData.discord %}<a href="{{contactMeta.discord-prefix}}{{contactData.discord}}">Discord</a> {% endif %}
-            {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">Forum</a>{% endif %}
-            {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">Github</a>{% endif %}
-            </br>
-          {% endif %}
-        {% endfor %}
-        {% for contact in page.contacts %}
+        <div class="contact-container">          
         {% assign contactData = contactsData | where: 'name', contact | first %}
-        {% if contactData == null %}
-          <b>{{ contact }}</b>
-          </br>
-        {% endif %}
-      {% endfor %}
+          {% if contactData %}
+            <b>{{ contactData.name }}</b><br/>
+            {% if contactData.discord %}<a href="{{contactMeta.discord-prefix}}{{contactData.discord}}">
+              <img src="assets/discord.svg" class="social-icon"/>
+            </a> {% endif %}
+            {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">
+              <img src="assets/discourse.svg" class="social-icon"/>
+            </a>{% endif %}
+            {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">
+              <img src="assets/github.svg" class="social-icon"/>
+            </a>{% endif %}
+          {% endif %}
+        </div>
+        {% endfor %}      
+        {% for contact in page.contacts %}
+        <div>
+          {% assign contactData = contactsData | where: 'name', contact | first %}
+          {% if contactData == null %}
+            <b>{{ contact }}</b></br>
+          {% endif %}
+        </div>
+        {% endfor %}
       </div>
       {% endif %}
     </div>
