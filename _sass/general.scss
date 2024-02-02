@@ -128,9 +128,13 @@ ul + p {
   text-wrap: nowrap;
 }
 
+a.page-link {
+  color: $select-color !important;
+}
+
 a.page-link:hover {
   text-decoration: none;
-  color: #2a799f;
+  color: $hover-color !important;
 }
 
 .site-title {
