@@ -312,6 +312,7 @@
 
 $content-width:    1100px;
 $background-color: #EEEFF2;
+$base-font-family: 'Inter', sans-serif;
 
 @mixin relative-font-size($ratio) {
  font-size: $base-font-size * $ratio;

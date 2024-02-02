@@ -19,7 +19,7 @@ layout: default
             {% if page.reward.unit == "RPL" %}
             <h3 class="converted-price">{% include bounty-amount.html reward=page.reward convert="RPL"%}</h3>
             {% endif %}
-            <b class="bounty-date"> {{page.date | date_to_string: "ordinal", "US"}} </b>
+            <span class="bounty-date"> {{page.date | date_to_string: "ordinal", "US"}} </span>
           </div>
       </div>
       <div class="flex-justify">
@@ -37,16 +37,29 @@ layout: default
       <div>
         <h2>Contacts</h2>
         {% for contact in page.contacts %}
-          {% assign contactData = contactsData | where: 'name', contact | first %}
+        <div class="contact-container">          
+        {% assign contactData = contactsData | where: 'name', contact | first %}
           {% if contactData %}
-            <b>{{ contactData.name }}:</b>
-            {% if contactData.discord %}<a href="{{contactMeta.discord-prefix}}{{contactData.discord}}">Discord</a> {% endif %}
-            {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">Forum</a>{% endif %}
-            {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">Github</a>{% endif %}
-            </br>
-          {% else %}
-            <b>{{ contact }}</b>
+            <b>{{ contactData.name }}</b><br/>
+            {% if contactData.discord %}<a href="{{contactMeta.discord-prefix}}{{contactData.discord}}">
+              <img src="assets/discord.svg" class="social-icon"/>
+            </a> {% endif %}
+            {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">
+              <img src="assets/discourse.svg" class="social-icon"/>
+            </a>{% endif %}
+            {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">
+              <img src="assets/github.svg" class="social-icon"/>
+            </a>{% endif %}
           {% endif %}
+        </div>
+        {% endfor %}      
+        {% for contact in page.contacts %}
+        <div>
+          {% assign contactData = contactsData | where: 'name', contact | first %}
+          {% if contactData == null %}
+            <b>{{ contact }}</b></br>
+          {% endif %}
+        </div>
         {% endfor %}
       </div>
       {% endif %}

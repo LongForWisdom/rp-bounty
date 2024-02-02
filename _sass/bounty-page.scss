@@ -11,19 +11,6 @@
   width: 100%;
 }
 
-.wrapper-backed {
-  @extend .wrapper;
-  background-color: $item-background-color;
-  border-left: solid 1px $border-color;
-  border-right: solid 1px $border-color;
-  padding-top: 24px !important;
-  padding-bottom: 16px;
-  margin-top: -16px;
-  margin-bottom: -16px;
-  min-height: 81vh;
-  align-content: center;
-}
-
 .price-container-page {
   height: 65px;
   margin-bottom: -12px;
@@ -38,4 +25,19 @@
 .headline-spacing {
   margin-top: 4px;
   margin-bottom: 12px;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+  filter: invert(58%) sepia(27%) saturate(7494%) hue-rotate(344deg) brightness(99%) contrast(94%);
+
+  &:hover {
+    filter: invert(17%) sepia(42%) saturate(5792%) hue-rotate(20deg) brightness(96%) contrast(101%);
+  }
+}
+
+.contact-container {
+  margin-bottom: 8px;
 }
