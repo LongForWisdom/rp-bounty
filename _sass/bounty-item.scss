@@ -60,7 +60,7 @@ $tag-border-radius: 16px;
   color: $tag-text-color;
   font-weight: 400;
   border-radius: $tag-border-radius;
-  text-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .bounty-tag:first-child {
@@ -175,7 +175,7 @@ $tag-border-radius: 16px;
 }
 
 .bounty-date {
-  text-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .price-container {
@@ -186,5 +186,5 @@ $tag-border-radius: 16px;
 .unconverted-price-item {
   margin-bottom: -6px;
   text-align: right;
-  text-wrap: nowrap;
+  white-space: nowrap;
 }

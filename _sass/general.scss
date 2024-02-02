@@ -125,7 +125,7 @@ ul + p {
   margin: 0px 0px 0px 0px;
   line-height: 1;
   text-align: right;
-  text-wrap: nowrap;
+  white-space: nowrap;
 }
 
 a.page-link {
@@ -161,9 +161,9 @@ a {
 }
 
 .header-list dd {
-  text-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .header-list dt {
-  text-wrap: nowrap;
+  white-space: nowrap;
 }
