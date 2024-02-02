@@ -17,20 +17,18 @@
     <img src="assets/xmark-solid.svg" class="tag-icon"/>
   {% elsif bounty.status =="draft" %}
     <div class="bounty-tag-status-draft">
-    <img src="assets/pen-ruler-solid.svg" class="tag-icon icon-adjust-smaller icon-adjust-up icon-adjust-left"/>
+    <img src="assets/pen-ruler-solid.svg" class="tag-icon icon-adjust-smaller icon-adjust-up"/>
   {% else %}
     <div class="bounty-tag-status-default">
   {% endif %}
-       <div class="bounty-tag-hole"></div>
     </div>
     <p data-format="tag">{{bounty.status}}</p>
   </div>
   {% for skillset in include.bounty.skillsets %}
     <div class="bounty-tag flex-stack-left">
       <div class="bounty-tag-skillset">
-        <div class="bounty-tag-hole"></div>
         {% if skillset =="protocol-knowledge" %}
-        <img src="assets/rocket-solid.svg" class="tag-icon icon-adjust-smaller"/>
+        <img src="assets/rocket-solid.svg" class="tag-icon icon-adjust-smaller icon-adjust-left icon-adjust-down"/>
         {% elsif skillset =="general-writing" %}
         <img src="assets/pen-nib-solid.svg" class="tag-icon icon-adjust-smaller icon-adjust-up"/>
         {% elsif skillset =="technical-writing" %}
@@ -55,9 +53,8 @@
   {% for tag in include.bounty.tags %}
     <div class="bounty-tag flex-stack-left">
       <div class="bounty-tag-tag">
-        <div class="bounty-tag-hole"></div>
         <img src="assets/tag-solid.svg" class="tag-icon icon-adjust-down icon-adjust-right"/>
-        </div>
+      </div>
       <p data-format="tag">{{tag}}</p>
     </div>
   {% endfor %}

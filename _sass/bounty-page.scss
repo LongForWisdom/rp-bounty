@@ -11,19 +11,6 @@
   width: 100%;
 }
 
-.wrapper-backed {
-  @extend .wrapper;
-  background-color: $item-background-color;
-  border-left: solid 1px $border-color;
-  border-right: solid 1px $border-color;
-  padding-top: 24px !important;
-  padding-bottom: 16px;
-  margin-top: -16px;
-  margin-bottom: -16px;
-  min-height: 81vh;
-  align-content: center;
-}
-
 .price-container-page {
   height: 65px;
   margin-bottom: -12px;

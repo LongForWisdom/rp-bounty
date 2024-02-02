@@ -38,6 +38,10 @@ $tag-border-radius: 16px;
   width: 100%;
 }
 
+.bounty-item-container h3 {
+  margin: 0px 0px 0px 0px;
+}
+
 .bounty-item-head {
   margin-bottom: 8px;
   vertical-align: top;
@@ -68,18 +72,10 @@ $tag-border-radius: 16px;
   min-width: 24px;
   height: 100%;
   border-radius: $tag-border-radius $tag-border-radius $tag-border-radius $tag-border-radius;
-  margin-right: -4px;
   align-items: center;
   justify-content: center;
+  margin-right: -4px;
   display: flex;
-}
-
-.bounty-tag-hole {
-  width: 6px;
-  height: 6px;
-  border-radius: 3px;
-  background-color: rgba(0, 0, 0, 0);
-  display: none;
 }
 
 .bounty-tag-skillset
@@ -108,8 +104,8 @@ $tag-border-radius: 16px;
 
 .tag-icon
 {
-  width: 1em;
-  height: 1em;
+  width: 16px;
+  height: 16px;
   color: black;
   filter: invert(95%) sepia(0%) saturate(0%) hue-rotate(142deg) brightness(150%) contrast(100%);
 }
@@ -136,8 +132,8 @@ $tag-border-radius: 16px;
 
 .icon-adjust-smaller
 {
-  width: 0.9em;
-  height: 0.9em;
+  width: 14px;
+  height: 14px;
 }
 
 // Experimenting with corners for status
@@ -170,7 +166,7 @@ $tag-border-radius: 16px;
 }
 
 .bounty-tag p {
-  padding: 0px 8px;
+  padding: 0px 12px;
   margin: 0px
 }
 

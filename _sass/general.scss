@@ -73,8 +73,16 @@ dt {
 }
 
 h3 {
-  margin: 0px 0px 0px 0px;
+  margin: 18px 0px 6px 0px;
   vertical-align: top;
+}
+
+h2 + h3 {
+  margin-top: 0px;
+}
+
+h1 + h3 {
+  margin-top: 0px;
 }
 
 h2 {

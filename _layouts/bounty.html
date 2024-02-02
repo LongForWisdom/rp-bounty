@@ -19,7 +19,7 @@ layout: default
             {% if page.reward.unit == "RPL" %}
             <h3 class="converted-price">{% include bounty-amount.html reward=page.reward convert="RPL"%}</h3>
             {% endif %}
-            <b class="bounty-date"> {{page.date | date_to_string: "ordinal", "US"}} </b>
+            <span class="bounty-date"> {{page.date | date_to_string: "ordinal", "US"}} </span>
           </div>
       </div>
       <div class="flex-justify">
@@ -44,10 +44,15 @@ layout: default
             {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">Forum</a>{% endif %}
             {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">Github</a>{% endif %}
             </br>
-          {% else %}
-            <b>{{ contact }}</b>
           {% endif %}
         {% endfor %}
+        {% for contact in page.contacts %}
+        {% assign contactData = contactsData | where: 'name', contact | first %}
+        {% if contactData == null %}
+          <b>{{ contact }}</b>
+          </br>
+        {% endif %}
+      {% endfor %}
       </div>
       {% endif %}
     </div>
