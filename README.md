@@ -14,6 +14,11 @@ The periodic action:
 
 The github pages build is triggered automatically by changes in the source data.
 
+## Source Assumptions
+* That the maintainer will be notified if the skillset set changes. If a new skillset is added in the source data that is not currently present, it will not have a unique icon, but will otherwise behave correctly.
+* That the maintainer will be notified if the status set changes. If a new status is added in the source data that is not currently present, it will display without an icon with a black background.
+* That the data.yml source data will be kept up-to-date. If not, the countdowns in the top right of the page will not display correctly.
+
 ## Local Development
 
 Follow these steps to setup a local server:
