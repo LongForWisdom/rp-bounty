@@ -19,13 +19,11 @@ layout: default
             {% if page.reward.unit == "RPL" %}
             <h3 class="converted-price">{% include bounty-amount.html reward=page.reward convert="RPL"%}</h3>
             {% endif %}
-            <span class="bounty-date"> {{page.creation-date | date_to_string: "ordinal", "US"}} </span>
           </div>
       </div>
       <div class="flex-justify">
         {% assign bounty = page %}
         {% include bounty-tags.html bounty=page show-code=true %}
-        <b class="bounty-date exclusion-dummy">{{page.creation-date | date_to_string: "ordinal", "US"}}</b>
       </div>
     </header>
   

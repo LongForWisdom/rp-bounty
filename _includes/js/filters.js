@@ -4,7 +4,7 @@ var rawRPLUSD = JSON.parse('{{site.data.price-responses.rpl-usd | jsonify}}');
 var bountyLookup = {};
 
 var sorts = {
-  "date-desc": { displayName: "Newest", comparator: function(a,b) { return Date.parse(bountyLookup[b.id].date) - Date.parse(bountyLookup[a.id].date);}},
+  "date-desc": { displayName: "Newest", comparator: function(a,b) { return Date.parse(bountyLookup[b.id]['creation-date']) - Date.parse(bountyLookup[a.id]['creation-date']);}},
   "date-asc": { displayName: "Oldest", comparator: function(a,b) { return sorts["date-desc"].comparator(b,a);}},
   "amount-desc": { displayName: "Largest", comparator: function(a,b) {
                    let bountyA = bountyLookup[a.id];
