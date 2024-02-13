@@ -1,7 +1,7 @@
 {% assign filters = '' | split: '' %}
 <div class="filter-title">Status</div>
       {% for bounty in bounties %}
-          {% assign filter = "status:" | append: bounty.status%}
+          {% assign filter = "status:" | append: bounty.external-status%}
           {% assign filters = filters | push: filter %}
       {% endfor %}
       

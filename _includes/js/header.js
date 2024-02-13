@@ -1,6 +1,6 @@
-{% assign bounties=site.pages | where:"layout", "bounty" | sort:"date" | reverse | first%}
+{% assign bounties=site.pages | where:"layout", "bounty" | sort:"creation-date" | reverse | first%}
 {% assign dateinfo=site.data.dates %}
-var mostRecentBountyDate = Date.parse("{{bounties.date}}");
+var mostRecentBountyDate = Date.parse("{{bounties.creation-date}}");
 var dateInfo = JSON.parse('{{dateinfo | jsonify}}');
 var rawRPLUSD = JSON.parse('{{site.data.price-responses.rpl-usd | jsonify}}');
 
