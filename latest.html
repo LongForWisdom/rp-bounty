@@ -25,9 +25,11 @@ title: Bounty Feed
 
 <!-- Add dates of Bounties from repo. -->
 {% for bounty in raw_bounties %}
-  {% assign date=bounty.date | date_to_string: "ordinal", "US" %}
-  {% assign date=date | date_to_xmlschema %}
-  {% assign display_dates=display_dates | push: date %}
+  {% if bounty.creation-date != nil %}
+    {% assign date=bounty.creation-date | date_to_string: "ordinal", "US" %}
+    {% assign date=date | date_to_xmlschema %}
+    {% assign display_dates=display_dates | push: date %}
+  {% endif %}
 {% endfor %}
 
 <!-- Important to make sure dates are in the same format, hence all the conversion. Format conversion also removes timestamps that would otherwise cause duplicates. Can only sort in YYYY-MM-DD format. -->
@@ -57,10 +59,12 @@ title: Bounty Feed
     {% endfor %}
     <!-- Bounties --> 
     {% for bounty in raw_bounties %}
-      {% assign bounty_date=bounty.date | date_to_string: "ordinal", "US" %}
-      {% assign bounty_date=bounty_date | date_to_xmlschema %}
-      {% if bounty_date == date %}
-        <span><a href="{{bounty.url|relative_url}}">Bounty Added</a> - {{bounty.title}}</span><br/>
+      {% if bounty.creation-date != nil %}
+        {% assign bounty_date=bounty.creation-date | date_to_string: "ordinal", "US" %}
+        {% assign bounty_date=bounty_date | date_to_xmlschema %}
+        {% if bounty_date == date %}
+          <span><a href="{{bounty.url|relative_url}}">Bounty Added</a> - {{bounty.title}}</span><br/>
+        {% endif %}
       {% endif %}
     {% endfor %}
   </div>

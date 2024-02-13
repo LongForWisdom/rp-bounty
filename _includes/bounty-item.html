@@ -9,12 +9,12 @@
           {% if bounty.reward.unit == "RPL" %}
           <h5 class="converted-price">{% include bounty-amount.html reward=bounty.reward convert="RPL"%}</h5>
           {% endif %}
-          <span class="bounty-date"> {{include.bounty.date | date_to_string: "ordinal", "US"}} </span>
+          <span class="bounty-date"> {{include.bounty.creation-date | date_to_string: "ordinal", "US"}} </span>
         </div>
       </div>
         <div class="flex-justify">
         {% include bounty-tags.html bounty=include.bounty %}
-        <span class="bounty-date exclusion-dummy"> {{include.bounty.date | date_to_string: "ordinal", "US"}} </span>
+        <span class="bounty-date exclusion-dummy"> {{include.bounty.creation-date | date_to_string: "ordinal", "US"}} </span>
         </div>
     </div>
     <div class="bounty-item-content">
