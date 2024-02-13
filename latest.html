@@ -25,7 +25,7 @@ title: Bounty Feed
 
 <!-- Add dates of Bounties from repo. -->
 {% for bounty in raw_bounties %}
-  {% assign date=bounty.date | date_to_string: "ordinal", "US" %}
+  {% assign date=bounty.creation-date | date_to_string: "ordinal", "US" %}
   {% assign date=date | date_to_xmlschema %}
   {% assign display_dates=display_dates | push: date %}
 {% endfor %}

@@ -152,7 +152,7 @@ function filterBounties() {
     let show = true;
     let bounty = bounties.find((bounty) => bounty.code === items[i].id);
     
-    show &= selectedStatuses.includes(bounty.status) || selectedStatuses.length === 0;
+    show &= selectedStatuses.includes(bounty['external-status']) || selectedStatuses.length === 0;
     
     if(selectedSkillsets.length > 0)
     {
