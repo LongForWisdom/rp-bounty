@@ -163,7 +163,7 @@ function filterBounties() {
     
     if(selectedTags.length > 0)
     {
-      if(bounty.tags !== null && bounty.tags.length !== 0)
+      if(bounty.tags !== null && bounty.tags !== undefined && bounty.tags.length !== 0)
       {
         let tagShow = false;
         bounty.tags.forEach((bountyTag) => tagShow |= selectedTags.includes(bountyTag));
