@@ -1,2 +1,4 @@
 feeds:
- - https://dao.rocketpool.net/c/grant-bounties/13.rss
+ - https://dao.rocketpool.net/tag/gmc_bounty_apps.rss
+ - https://dao.rocketpool.net/tag/gmc_round_discussion.rss
+ - https://dao.rocketpool.net/tag/gmc_round_results.rss

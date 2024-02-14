@@ -41,7 +41,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with: 
           commit-message: "Automated update of source data via github action"
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: temp-data-updates
           delete-branch: true
           title: 'Update Source Data'
