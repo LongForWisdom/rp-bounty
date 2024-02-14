@@ -38,6 +38,7 @@ jobs:
         id: approve-pr
         uses: hmarr/auto-approve-action@v4.0.0
         with:
+          github-token: ${{ secrets.PAT }}
           pull-request-number: ${{ steps.create-pr.outputs.pull-request-number }}"
           
       - name: Merge Pull Request
