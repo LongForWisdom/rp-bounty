@@ -152,18 +152,24 @@ function filterBounties() {
     let show = true;
     let bounty = bounties.find((bounty) => bounty.code === items[i].id);
     
-    show &= selectedStatuses.includes(bounty['external-status']) || selectedStatuses.length === 0;
+    if(bounty['external-status'] !== undefined && bounty['external-status'] !== null)
+    {
+      show &= selectedStatuses.includes(bounty['external-status']) || selectedStatuses.length === 0;
+    }
     
     if(selectedSkillsets.length > 0)
     {
       let skillsetShow = false;
-      bounty.skillsets.forEach((bountySkillset) => skillsetShow |= selectedSkillsets.includes(bountySkillset));
+      if(bounty.skillsets !== undefined && bounty.skillsets !== null)
+      {
+        bounty.skillsets.forEach((bountySkillset) => skillsetShow |= selectedSkillsets.includes(bountySkillset));
+      }
       show &= skillsetShow;
     }
     
     if(selectedTags.length > 0)
     {
-      if(bounty.tags !== null && bounty.tags.length !== 0)
+      if(bounty.tags !== null && bounty.tags !== undefined && bounty.tags.length !== 0)
       {
         let tagShow = false;
         bounty.tags.forEach((bountyTag) => tagShow |= selectedTags.includes(bountyTag));
