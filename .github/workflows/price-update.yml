@@ -28,15 +28,21 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with: 
           commit-message: "Automated update of source data via github action"
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: temp-data-updates
           delete-branch: true
           title: 'Update Price Data'
           body: "Automated update of price data via github action. Currently RPL-USD price update."
-  
+
+      - name: Approve Pull Request
+        id: approve-pr
+        uses: hmarr/auto-approve-action@v4.0.0
+        with:
+          github-token: ${{ secrets.PAT }}
+          pull-request-number: ${{ steps.create-pr.outputs.pull-request-number }}"
+          
       - name: Merge Pull Request
         uses: juliangruber/merge-pull-request-action@v1.2.0
         with:
-          github-token: ${{ secrets.PAT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.create-pr.outputs.pull-request-number }}"
-          
