@@ -1,6 +1,7 @@
 {% assign filters = '' | split: '' %}
+<div class="filter-title">Status</div>
       {% for bounty in bounties %}
-          {% assign filter = "status:" | append: bounty.status%}
+          {% assign filter = "status:" | append: bounty.external-status%}
           {% assign filters = filters | push: filter %}
       {% endfor %}
       
@@ -8,11 +9,10 @@
       
       <div class="flex-stack-left flex-wrap bounty-filter">
       {%- for filter in filters -%}
-        {% assign filterPair = filter | split: ":" %}
-        {% include filter-item.html %}
+        {% include filter-item.html filter=filter%}
       {%- endfor -%}
       </div>
-      
+      <div class="filter-title">Skills</div>
       {% assign filters = '' | split: '' %}
       {% for bounty in bounties %}
         {% for skillset in bounty.skillsets %}
@@ -25,11 +25,10 @@
       
       <div class="flex-stack-left  flex-wrap bounty-filter">
       {%- for filter in filters -%}
-        {% assign filterPair = filter | split: ":" %}
-        {% include filter-item.html %}
+        {% include filter-item.html filter=filter%}
       {%- endfor -%}
       </div>
-      
+      <div class="filter-title">Tags</div>
       {% assign filters = '' | split: '' %}
       {% for bounty in bounties %}
         {% for tag in bounty.tags %}
@@ -42,7 +41,6 @@
       
       <div class="flex-stack-left flex-wrap bounty-filter">
       {%- for filter in filters -%}
-        {% assign filterPair = filter | split: ":" %}
-        {% include filter-item.html %}
+        {% include filter-item.html filter=filter%}
       {%- endfor -%}
       </div>

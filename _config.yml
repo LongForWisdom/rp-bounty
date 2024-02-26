@@ -21,7 +21,10 @@ github_username:  LongForWisdom
 repository: https://github.com/LongForWisdom/rp-bounties
 
 header_pages:
-  - all.html
+  - latest.html
+  - index.html
+  - faq.html
+  - resources.html
 
 # Build settings
 highlighter: rouge
@@ -31,11 +34,11 @@ theme: minima
 permalink: /:slug
 
 defaults:
-  -
-    scope:
+  - scope:
       path: "bounties"
     values:
       layout: "bounty"
+      permalink: /:basename
 
 exclude:
   - .github
@@ -50,3 +53,4 @@ exclude:
   - PULL_REQUEST_TEMPLATE.md
   - README.md
   - bounty-template.md
+

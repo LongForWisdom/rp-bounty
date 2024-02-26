@@ -1,8 +1,43 @@
 
 .bounty-tag-container {
-  height: 24px;
+  flex-flow: row wrap;
+  width: 100%;
+  @include media-query($on-palm) {
+      margin-top: 24px;
+   }
 }
 
-.bounty-filter {
+#bounty-list {
+  width: 100%;
+}
+
+.price-container-page {
+  height: 65px;
+  margin-bottom: -12px;
+}
+
+.unconverted-price-page {
+  margin-bottom: 0px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.headline-spacing {
+  margin-top: 4px;
   margin-bottom: 12px;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+  filter: invert(58%) sepia(27%) saturate(7494%) hue-rotate(344deg) brightness(99%) contrast(94%);
+
+  &:hover {
+    filter: invert(17%) sepia(42%) saturate(5792%) hue-rotate(20deg) brightness(96%) contrast(101%);
+  }
+}
+
+.contact-container {
+  margin-bottom: 8px;
 }

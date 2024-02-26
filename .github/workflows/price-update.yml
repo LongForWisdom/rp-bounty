@@ -1,0 +1,48 @@
+name: price-update
+on: 
+  workflow_dispatch:
+  schedule: 
+    - cron: "00 00 * * *"
+      
+jobs:
+  get_rss: 
+    runs-on: ubuntu-latest
+    name: Update Price Data
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4.1.1  
+        with:
+          submodules: 'true'
+          ref: production
+          
+      - name: Get RPL Price
+        continue-on-error: true
+        uses: fjogeleit/http-request-action@v1.14.2
+        with: 
+          url: "https://optimism-mainnet.infura.io/v3/${{ secrets.INFURA }}"
+          data: '{"jsonrpc": "2.0", "id": 1, "method": "eth_call", "params": [{"to":"0xADE082c91A6AeCC86fC11704a830e933e1b382eA","data":"0x50d25bcd"}, "latest"]}'
+          responseFile: _data/price-responses/rpl-usd.json
+          
+      - name: Create Pull Request
+        id: create-pr
+        uses: peter-evans/create-pull-request@v5
+        with: 
+          commit-message: "Automated update of source data via github action"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: temp-data-updates
+          delete-branch: true
+          title: 'Update Price Data'
+          body: "Automated update of price data via github action. Currently RPL-USD price update."
+
+      - name: Approve Pull Request
+        id: approve-pr
+        uses: hmarr/auto-approve-action@v4.0.0
+        with:
+          github-token: ${{ secrets.PAT }}
+          pull-request-number: ${{ steps.create-pr.outputs.pull-request-number }}"
+          
+      - name: Merge Pull Request
+        uses: juliangruber/merge-pull-request-action@v1.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.create-pr.outputs.pull-request-number }}"

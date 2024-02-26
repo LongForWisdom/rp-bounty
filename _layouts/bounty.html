@@ -8,41 +8,60 @@ layout: default
   }
 </style>
 
-<article class="post">
+<div class="wrapper-backed">
+  <article class="post">
 
-  <header class="post-header">
-    <div class="flex-justify">
-      <h1 class="post-title"> {{ page.title | escape }} </h1>
-      <h1 class="post-title"> {{page.reward}} </h1>
-    </div>
-    <div class="flex-justify">
-      {% assign bounty = page %}
-      {% include bounty-tags.html bounty=page %}
-      <b>{{page.date | date_to_string: "ordinal", "US"}}</b>
-    </div>
-  </header>
-
-  <div class="post-content">
-    {{ content }}
-    {% if page.contacts %}
-    {% assign contactsData = site.data.contacts.contacts %}
-    {% assign contactMeta = site.data.contacts.meta %}
-    <div>
-      <h2>Contacts</h2>
-      {% for contact in page.contacts %}
+    <header class="post-header">
+      <div class="flex-justify headline-spacing">
+        <h1 class="post-title"> {{ page.title | escape }} </h1>
+          <div class="flex-stack-top flex-align-end price-container-page">
+            <h1 class="post-title unconverted-price-page">{% include bounty-amount.html reward=page.reward %}</h1>
+            {% if page.reward.unit == "RPL" %}
+            <h3 class="converted-price">{% include bounty-amount.html reward=page.reward convert="RPL"%}</h3>
+            {% endif %}
+          </div>
+      </div>
+      <div class="flex-justify">
+        {% assign bounty = page %}
+        {% include bounty-tags.html bounty=page show-code=true %}
+      </div>
+    </header>
+  
+    <div class="post-content">
+      {{ content }}
+      {% if page.contacts %}
+      {% assign contactsData = site.data.contacts.contacts %}
+      {% assign contactMeta = site.data.contacts.meta %}
+      <div>
+        <h2>Contacts</h2>
+        {% for contact in page.contacts %}
+        <div class="contact-container">          
         {% assign contactData = contactsData | where: 'name', contact | first %}
-        {% if contactData %}
-          <b>{{ contactData.name }}:</b>
-          {% if contactData.discord %}<a href="{{contactMeta.discord-prefix}}{{contactData.discord}}">Discord</a> {% endif %}
-          {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">Forum</a>{% endif %}
-          {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">Github</a>{% endif %}
-          </br>
-        {% else %}
-          <b>{{ contact }}</b>
-        {% endif %}
-      {% endfor %}
+          {% if contactData %}
+            <b>{{ contactData.name }}</b><br/>
+            {% if contactData.discord %}<a href="{{contactMeta.discord-prefix}}{{contactData.discord}}">
+              <img src="assets/discord.svg" class="social-icon"/>
+            </a> {% endif %}
+            {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">
+              <img src="assets/discourse.svg" class="social-icon"/>
+            </a>{% endif %}
+            {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">
+              <img src="assets/github.svg" class="social-icon"/>
+            </a>{% endif %}
+          {% endif %}
+        </div>
+        {% endfor %}      
+        {% for contact in page.contacts %}
+        <div>
+          {% assign contactData = contactsData | where: 'name', contact | first %}
+          {% if contactData == null %}
+            <b>{{ contact }}</b></br>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
-    {% endif %}
-  </div>
+  </article>
+</div>
 
-</article>

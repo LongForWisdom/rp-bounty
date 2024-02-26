@@ -1,0 +1,169 @@
+
+.site-header {
+  border-top: 0px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  min-height: $spacing-unit * 1.865;
+  background-color: $header-background-color;
+
+  // Positioning context for the mobile navigation icon
+  position: relative;
+}
+
+.wrapper {
+  padding-top: 6px;
+}
+
+.wrapper-backed {
+  @extend .wrapper;
+  background-color: $item-background-color;
+  border-left: solid 1px $border-color;
+  border-right: solid 1px $border-color;
+  padding-top: 24px !important;
+  padding-bottom: 16px;
+  margin-top: -16px;
+  margin-bottom: -16px;
+  min-height: 81vh;
+  align-content: center;
+}
+
+
+.header-logo {
+  margin: 0px 8px 0px 0px;
+  height: 40px;
+  min-width: 40px;
+}
+
+.header-list { 
+  display: grid; 
+  grid-template-columns: 
+  max-content auto; 
+  margin: 0px 8px 8px 0px;
+  font-size: 0.9rem;
+}
+
+.site-footer {
+  background-color: $header-background-color;
+  border-top: 1px solid $border-color;
+  padding: 8px;
+}
+
+.footer-heading {
+  @include relative-font-size(1.125);
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.footer-link {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.footer-link-container {
+  margin-bottom: 12px;
+  justify-content: center;
+}
+
+dt {
+  margin: 0px 24px 0px 0px;
+
+  img {
+    margin-right: 5px;
+  }
+  
+}
+
+.site-nav {
+  float: left;
+  line-height: $base-line-height * $base-font-size;
+  margin: 0px 0px 8px 0px;
+}
+
+h3 {
+  margin: 18px 0px 6px 0px;
+  vertical-align: top;
+}
+
+h2 + h3 {
+  margin-top: 0px;
+}
+
+h1 + h3 {
+  margin-top: 0px;
+}
+
+h2 {
+  margin-bottom: 0px;
+}
+
+p {
+  margin-bottom: 15px;
+  margin-left: 2px;
+}
+
+ul {
+  margin-bottom: 15px;
+  margin-left: 34px;
+}
+
+p + h2, ul + h2 {
+  margin-top: 12px;
+}
+
+p + p  {
+  margin-top: 2px;
+}
+
+p + ul {
+  margin-top: 4px;
+}
+
+ul + p {
+  margin-top: 12px;
+}
+
+.converted-price {
+  margin: 0px 0px 0px 0px;
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
+}
+
+a.page-link {
+  color: $select-color !important;
+}
+
+a.page-link:hover {
+  text-decoration: none;
+  color: $hover-color !important;
+}
+
+.site-title {
+  line-height: 1.1em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-right: 16px;
+}
+
+.site-title:hover {
+  text-decoration: none;
+}
+
+a {
+  color: $select-color;
+  &:visited {
+    color: $select-color;
+  }
+
+  &:hover {
+    color: $hover-color;
+    text-decoration: none;
+  }
+}
+
+.header-list dd {
+  white-space: nowrap;
+}
+
+.header-list dt {
+  white-space: nowrap;
+}

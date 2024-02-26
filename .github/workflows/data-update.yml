@@ -1,0 +1,48 @@
+name: data-update
+on: 
+  workflow_dispatch:
+  schedule: 
+    - cron: "00 17 * * *"
+      
+jobs:
+  get_rss: 
+    runs-on: ubuntu-latest
+    name: Update All Data
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4.1.1  
+        with:
+          submodules: 'true'
+          ref: production
+
+      - name: Submodule Update
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
+          
+      - name: RSS to JSON
+        continue-on-error: true
+        uses: I-Valchev/rss-to-json@1.0.0
+        with: 
+          source: .github/feeds.yaml
+          target: _data/gmc-rss.json
+          
+      - name: Copy Source Data
+        continue-on-error: true
+        run: |
+          rm -f -r "bounties"
+          cp -R "_source/bounties" "."
+          cp "_source/meta/bounty-faq.md" "docs/bounty-faq.md"
+          cp "_source/meta/resources.md" "docs/resources.md"
+          cp "_source/meta/dates.yml" "_data/dates.yml"
+          cp "_source/meta/contacts.yml" "_data/contacts.yml"
+          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with: 
+          commit-message: "Automated update of source data via github action"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: temp-data-updates
+          delete-branch: true
+          title: 'Update Source Data'
+          body: "Automated update of source data via github action. Includes add and remove of bounties and update of docs files."
