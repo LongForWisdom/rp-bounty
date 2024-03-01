@@ -15,6 +15,9 @@
   {% elsif bounty.external-status =="closed" %}
     <div class="bounty-tag-status-closed">
     <img src="assets/xmark-solid.svg" class="tag-icon"/>
+  {% elsif bounty.external-status =="unavailable" %}
+    <div class="bounty-tag-status-unavailable">
+    <img src="assets/xmark-solid.svg" class="tag-icon"/>
   {% elsif bounty.external-status =="draft" %}
     <div class="bounty-tag-status-draft">
     <img src="assets/pen-ruler-solid.svg" class="tag-icon icon-adjust-smaller icon-adjust-up"/>
