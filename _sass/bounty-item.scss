@@ -153,6 +153,12 @@ $tag-border-radius: 16px;
   background-color: $status-closed-col;
 }
 
+.bounty-tag-status-unavailable
+{
+  @extend .bounty-tag-flare;
+  background-color: $status-unavailable-col;
+}
+
 .bounty-tag-status-draft
 {
   @extend .bounty-tag-flare;
