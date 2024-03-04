@@ -29,7 +29,7 @@ jobs:
         with: 
           commit-message: "Automated update of source data via github action"
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: temp-data-updates
+          branch: temp-price-updates
           delete-branch: true
           title: 'Update Price Data'
           body: "Automated update of price data via github action. Currently RPL-USD price update."
