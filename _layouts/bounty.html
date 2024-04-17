@@ -24,7 +24,7 @@ layout: default
       </div>
       <div class="flex-justify">
         {% assign bounty = page %}
-        {% include bounty-tags.html bounty=page show-code=true %}
+        {% include bounty-tags.html bounty=page show-code="true" %}
         <b class="bounty-date exclusion-dummy">{{page.creation-date | date_to_string: "ordinal", "US"}}</b>
       </div>
     </header>
@@ -32,32 +32,10 @@ layout: default
     <div class="post-content">
       {{ content }}
       {% if page.contacts %}
-      {% assign contactsData = site.data.contacts.contacts %}
-      {% assign rolesData = site.data.contacts.global-roles %}
-      {% assign contactMeta = site.data.contacts.meta %}
       <div>
         <h2>Contacts</h2>
         <div>
-        <!-- Always show the GMC admin  -->
-        {% assign currentAdmin = rolesData | where: 'name', "GMC Administrator" | first %}
-        {% assign contactData = contactsData | where: 'name', currentAdmin.current-fill | first %}
-        {% if contactData.name == currentAdmin.current-fill %}
-          {% include contact.html contact=contactData role="GMC Administrator" %}
-        {% endif %}
-        <!-- Get the entries from contacts.yml  -->
-        {% for contact in page.contacts %}
-          {% assign contactData = contactsData | where: 'name', contact | first %}
-          {% if contactData != null %}
-            {% include contact.html contact=contactData role="Support" %}
-          {% endif %}
-        {% endfor %}
-        <!-- Display individuals without contacts entries -->
-        {% for contact in page.contacts %}
-          {% assign contactData = contactsData | where: 'name', contact | first %}
-          {% if contactData == null %}
-            <b>{{ contact }}</b></br>
-          {% endif %}
-        {% endfor %}
+        {% include contact-list.html contacts=page.contacts %}
         </div>
       </div>
       {% endif %}
