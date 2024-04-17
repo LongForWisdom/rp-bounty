@@ -24,10 +24,10 @@ The github pages build is triggered automatically by changes in the source data.
 
 ## To Maintain Bounty Content
 1. Make a PR with changes to the _data_ respository, located [here](https://github.com/rocketpoolgmc/rocketpool-gmc/tree/main/bounties).
-2. Have changes reviewed by another.
+2. Have changes reviewed by another person.
 3. Merge changes in _data_ repository.
-4. Trigger `data-update` action in _frontend_ repository, located [here](https://github.com/rocketpoolgmc/rp-bounty/actions/workflows/data-update.yml), alternatively, wait for 24 hour periodic update.
-5. Confirm that `data-update` action in _frontend_ repository, located succeeded and changes were merged.
+4. Trigger `data-update` action in _frontend_ repository, located [here](https://github.com/rocketpoolgmc/rp-bounty/actions/workflows/data-update.yml). Alternatively, wait for 24 hour periodic update.
+5. Confirm that `data-update` action in _frontend_ repository succeeded and changes were merged.
 6. Confirm that `pages-build-deployment` action in _frontend_ repository, located [here](https://github.com/rocketpoolgmc/rp-bounty/actions/workflows/pages/pages-build-deployment) was triggered (automatic) and succeeded.
 
 ## Local Development
