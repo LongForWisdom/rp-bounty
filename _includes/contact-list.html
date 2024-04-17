@@ -1,0 +1,25 @@
+{% assign contacts = include.contacts %}
+{% assign contactsData = site.data.contacts.contacts %}
+{% assign rolesData = site.data.contacts.global-roles %}
+{% assign contactMeta = site.data.contacts.meta %}
+
+<!-- Always show the GMC admin  -->
+{% assign currentAdmin = rolesData | where: 'name', "GMC Administrator" | first %}
+{% assign contactData = contactsData | where: 'name', currentAdmin.current-fill | first %}
+{% if contactData.name == currentAdmin.current-fill %}
+  {% include contact.html contact=contactData role="GMC Administrator" %}
+{% endif %}
+<!-- Get the entries from contacts.yml  -->
+{% for contact in contacts %}
+  {% assign contactData = contactsData | where: 'name', contact | first %}
+  {% if contactData != null %}
+    {% include contact.html contact=contactData role="Support" %}
+  {% endif %}
+{% endfor %}
+<!-- Display individuals without contacts entries -->
+{% for contact in contacts %}
+  {% assign contactData = contactsData | where: 'name', contact | first %}
+  {% if contactData == null %}
+    <b>{{ contact }}</b></br>
+  {% endif %}
+{% endfor %}

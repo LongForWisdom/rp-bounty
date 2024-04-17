@@ -1,0 +1,17 @@
+{% assign contactData = include.contact %}
+{% assign contactRole = include.role %}
+
+<div class="contact-container">    
+    {% if contactData %}
+    <b>{% if contactRole %}{{contactRole}} - {% endif %}{{ contactData.name }}</b><br/>
+    {% if contactData.discord %}<a href="{{contactMeta.discord-prefix}}{{contactData.discord}}">
+        <img src="assets/discord.svg" class="social-icon"/>
+    </a> {% endif %}
+    {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">
+        <img src="assets/discourse.svg" class="social-icon"/>
+    </a>{% endif %}
+    {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">
+        <img src="assets/github.svg" class="social-icon"/>
+    </a>{% endif %}
+    {% endif %}
+</div>

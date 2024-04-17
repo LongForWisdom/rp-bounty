@@ -19,46 +19,24 @@ layout: default
             {% if page.reward.unit == "RPL" %}
             <h3 class="converted-price">{% include bounty-amount.html reward=page.reward convert="RPL"%}</h3>
             {% endif %}
+            <span class="bounty-date"> {{page.creation-date | date_to_string: "ordinal", "US"}} </span>
           </div>
       </div>
       <div class="flex-justify">
         {% assign bounty = page %}
-        {% include bounty-tags.html bounty=page show-code=true %}
+        {% include bounty-tags.html bounty=page show-code="true" %}
+        <b class="bounty-date exclusion-dummy">{{page.creation-date | date_to_string: "ordinal", "US"}}</b>
       </div>
     </header>
   
     <div class="post-content">
       {{ content }}
       {% if page.contacts %}
-      {% assign contactsData = site.data.contacts.contacts %}
-      {% assign contactMeta = site.data.contacts.meta %}
       <div>
         <h2>Contacts</h2>
-        {% for contact in page.contacts %}
-        <div class="contact-container">          
-        {% assign contactData = contactsData | where: 'name', contact | first %}
-          {% if contactData %}
-            <b>{{ contactData.name }}</b><br/>
-            {% if contactData.discord %}<a href="{{contactMeta.discord-prefix}}{{contactData.discord}}">
-              <img src="assets/discord.svg" class="social-icon"/>
-            </a> {% endif %}
-            {% if contactData.forum %}<a href="{{contactMeta.forum-prefix}}{{contactData.forum}}">
-              <img src="assets/discourse.svg" class="social-icon"/>
-            </a>{% endif %}
-            {% if contactData.github %}<a href="{{contactMeta.github-prefix}}{{contactData.github}}">
-              <img src="assets/github.svg" class="social-icon"/>
-            </a>{% endif %}
-          {% endif %}
-        </div>
-        {% endfor %}      
-        {% for contact in page.contacts %}
         <div>
-          {% assign contactData = contactsData | where: 'name', contact | first %}
-          {% if contactData == null %}
-            <b>{{ contact }}</b></br>
-          {% endif %}
+        {% include contact-list.html contacts=page.contacts %}
         </div>
-        {% endfor %}
       </div>
       {% endif %}
     </div>

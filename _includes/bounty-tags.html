@@ -1,5 +1,6 @@
 <div class="bounty-tag-container flex-stack-left">
-  {% if include.show-code != null %}
+  
+  {% if include.show-code=="true"%}
   <div class="bounty-tag flex-stack-left">
     <div class="bounty-tag-code">
       <div class="bounty-tag-hole"></div>
@@ -14,6 +15,9 @@
     <img src="assets/check-solid.svg" class="tag-icon"/>
   {% elsif bounty.external-status =="closed" %}
     <div class="bounty-tag-status-closed">
+    <img src="assets/xmark-solid.svg" class="tag-icon"/>
+  {% elsif bounty.external-status =="unavailable" %}
+    <div class="bounty-tag-status-unavailable">
     <img src="assets/xmark-solid.svg" class="tag-icon"/>
   {% elsif bounty.external-status =="draft" %}
     <div class="bounty-tag-status-draft">
