@@ -1,8 +1,7 @@
 # rp-bounty
 
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/LongForWisdom/rp-bounty/data-update.yml?label=Data%20Update)![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/LongForWisdom/rp-bounty/pages%2Fpages-build-deployment?label=Pages%20Deployment)
-
-
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/LongForWisdom/rp-bounty/data-update.yml?label=Data%20Update)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/LongForWisdom/rp-bounty/pages%2Fpages-build-deployment?label=Pages%20Deployment)
 
 This is a static site bounty portal that pulls data from a github repository of Rocket Pool bounty data maintained by the Rocket Pool Grants Management Committee.
 
