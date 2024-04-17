@@ -30,6 +30,8 @@ The github pages build is triggered automatically by changes in the source data.
 5. Confirm that `data-update` action in _frontend_ repository succeeded and changes were merged.
 6. Confirm that `pages-build-deployment` action in _frontend_ repository, located [here](https://github.com/rocketpoolgmc/rp-bounty/actions/workflows/pages/pages-build-deployment) was triggered (automatic) and succeeded.
 
+You can use the hidden /admin page to view bounties with some extra information that may be useful for administration work. 
+
 ## Local Development
 
 Follow these steps to setup a local server:
