@@ -13,11 +13,29 @@
         </div>
       </div>
         <div class="flex-justify">
-        {% include bounty-tags.html bounty=include.bounty %}
+        {% capture admin-mode %}{% if page.title == "Admin" %}true{% endif %}{% endcapture %}
+        {% include bounty-tags.html bounty=include.bounty show-code=admin-mode %}
         <span class="bounty-date exclusion-dummy"> {{include.bounty.creation-date | date_to_string: "ordinal", "US"}} </span>
         </div>
     </div>
     <div class="bounty-item-content">
       {{ include.bounty.summary | markdownify}}
+      {% if page.title == "Admin" %}
+        {% assign contactsData = site.data.contacts.contacts %}
+        <!-- Get the entries from contacts.yml  -->
+        {% for contact in bounty.contacts %}
+        {% assign contactData = contactsData | where: 'name', contact | first %}
+        {% if contactData != null %}
+          {% include contact.html contact=contactData role="Support" %}
+        {% endif %}
+        {% endfor %}
+        <!-- Display individuals without contacts entries -->
+        {% for contact in bounty.contacts %}
+        {% assign contactData = contactsData | where: 'name', contact | first %}
+        {% if contactData == null %}
+          <b>{{ contact }}</b> (No Details)</br>
+        {% endif %}
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
