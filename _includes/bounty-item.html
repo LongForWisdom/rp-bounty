@@ -13,11 +13,41 @@
         </div>
       </div>
         <div class="flex-justify">
-        {% include bounty-tags.html bounty=include.bounty %}
+        {% capture admin-mode %}{% if page.title == "Admin" %}true{% endif %}{% endcapture %}
+        {% include bounty-tags.html bounty=include.bounty show-code=admin-mode %}
         <span class="bounty-date exclusion-dummy"> {{include.bounty.creation-date | date_to_string: "ordinal", "US"}} </span>
         </div>
     </div>
     <div class="bounty-item-content">
       {{ include.bounty.summary | markdownify}}
+      {% if page.title == "Admin" %}
+        <hr/>
+        {% assign dateStart = bounty.creation-date | date: '%s' %}
+        {% assign nowTimestamp = 'now' | date: '%s' %}
+        {% assign diffSeconds = nowTimestamp | minus: dateStart %}
+        {% assign diffDays = diffSeconds | divided_by: 3600 | divided_by: 24 | divided_by: 30.44 %}
+        <span><b>Age</b> - {{ diffDays | round: 0}} months</span></br>
+
+        {% assign contactsData = site.data.contacts.contacts %}
+        <!-- Get the entries from contacts.yml  -->
+        {% for contact in bounty.contacts %}
+        {% assign contactData = contactsData | where: 'name', contact | first %}
+        {% if contactData != null %}
+          <span><b>Contact</b> - {{contactData.name}}</span></br>
+        {% endif %}
+        {% endfor %}
+        <!-- Display individuals without contacts entries -->
+        {% for contact in bounty.contacts %}
+        {% assign contactData = contactsData | where: 'name', contact | first %}
+        {% if contactData == null %}
+          <span><b>Contact</b> - {{ contact }} (No Details)</span></br>
+        {% endif %}
+        {% endfor %}
+      <span><b>P-Author</b> - {{bounty.proposal-author}} - <a href="{{bounty.application-url}}">Proposal</a></span></br>
+      {% if bounty.definition-author != nil %}<span><b>D-Author</b> - {{bounty.definition-author}}{% if bounty.definition-url != nil %} - <a href="{{bounty.definition-url}}">Definition</a>{%endif%}</span></br> {%endif%} 
+
+
+
+      {% endif %}
     </div>
   </div>

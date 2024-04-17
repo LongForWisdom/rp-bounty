@@ -46,3 +46,16 @@ jobs:
           delete-branch: true
           title: 'Update Source Data'
           body: "Automated update of source data via github action. Includes add and remove of bounties and update of docs files."
+          
+      - name: Approve Pull Request
+        id: approve-pr
+        uses: hmarr/auto-approve-action@v4.0.0
+        with:
+          github-token: ${{ secrets.PAT }}
+          pull-request-number: ${{ steps.create-pr.outputs.pull-request-number }}"
+          
+      - name: Merge Pull Request
+        uses: juliangruber/merge-pull-request-action@v1.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.create-pr.outputs.pull-request-number }}"
