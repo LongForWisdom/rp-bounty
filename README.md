@@ -1,5 +1,8 @@
 # rp-bounty
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/LongForWisdom/rp-bounty/data-update.yml?label=Data%20Update)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/LongForWisdom/rp-bounty/pages%2Fpages-build-deployment?label=Pages%20Deployment)
+
 This is a static site bounty portal that pulls data from a github repository of Rocket Pool bounty data maintained by the Rocket Pool Grants Management Committee.
 
 ## Data Flow
@@ -17,7 +20,17 @@ The github pages build is triggered automatically by changes in the source data.
 ## Source Assumptions
 * That the maintainer will be notified if the skillset set changes. If a new skillset is added in the source data that is not currently present, it will not have a unique icon, but will otherwise behave correctly.
 * That the maintainer will be notified if the status set changes. If a new status is added in the source data that is not currently present, it will display without an icon with a black background.
-* That the data.yml source data will be kept up-to-date. If not, the countdowns in the top right of the page will not display correctly.
+* That the dates.yml source data will be kept up-to-date. If not, the countdowns in the top right of the page will not display correctly.
+
+## To Maintain Bounty Content
+1. Make a PR with changes to the _data_ respository, located [here](https://github.com/rocketpoolgmc/rocketpool-gmc/tree/main/bounties).
+2. Have changes reviewed by another person.
+3. Merge changes in _data_ repository.
+4. Trigger `data-update` action in _frontend_ repository, located [here](https://github.com/rocketpoolgmc/rp-bounty/actions/workflows/data-update.yml). Alternatively, wait for 24 hour periodic update.
+5. Confirm that `data-update` action in _frontend_ repository succeeded and changes were merged.
+6. Confirm that `pages-build-deployment` action in _frontend_ repository, located [here](https://github.com/rocketpoolgmc/rp-bounty/actions/workflows/pages/pages-build-deployment) was triggered (automatic) and succeeded.
+
+You can use the hidden /admin page to view bounties with some extra information that may be useful for administration work. 
 
 ## Local Development
 
