@@ -50,13 +50,15 @@ jobs:
           
       - name: Approve Pull Request
         id: approve-pr
+        if: ${{ steps.create-pr.outputs.pull-request-number }}
         uses: hmarr/auto-approve-action@v4.0.0
         with:
           github-token: ${{ secrets.PAT }}
-          pull-request-number: ${{ steps.create-pr.outputs.pull-request-number }}"
+          pull-request-number: ${{ steps.create-pr.outputs.pull-request-number }}
           
       - name: Merge Pull Request
+        if: ${{ steps.create-pr.outputs.pull-request-number }}
         uses: juliangruber/merge-pull-request-action@v1.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.create-pr.outputs.pull-request-number }}"
+          number: ${{ steps.create-pr.outputs.pull-request-number }}
