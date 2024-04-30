@@ -38,6 +38,7 @@ jobs:
           cp "_source/meta/contacts.yml" "_data/contacts.yml"
           
       - name: Create Pull Request
+        id: create-pr 
         uses: peter-evans/create-pull-request@v5
         with: 
           commit-message: "Automated update of source data via github action"
