@@ -185,8 +185,10 @@ function filterBounties() {
     {
       let lowercaseTitle = bounty.title.toLowerCase();
       let lowercaseSummary = bounty.summary.toLowerCase();
+      let code = bounty.code.toLowerCase();
       if(lowercaseTitle.includes(searchInput) ||
-         lowercaseSummary.includes(searchInput))
+         lowercaseSummary.includes(searchInput) ||
+         code.includes(searchInput))
       {
         show &= true;
       }
