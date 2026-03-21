@@ -1,1 +1,1 @@
-{"jsonrpc":"2.0","id":1,"result":"0x000000000000000000000000000000000000000000000000000000000b1fd81e"}
+{"jsonrpc":"2.0","id":1,"error":{"code":3,"message":"execution reverted"}}
